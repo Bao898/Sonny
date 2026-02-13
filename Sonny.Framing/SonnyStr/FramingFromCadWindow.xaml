@@ -1,0 +1,208 @@
+﻿<Window x:Name="MainWindow" x:Class="SonnyBIM.FramingFromCadWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            xmlns:Sonnybim="clr-namespace:SonnyBIM"
+            d:DataContext="{d:DesignInstance Type=Sonnybim:FramingFromCADViewModel}"
+
+            Height="380" Width="660"
+            WindowStartupLocation="CenterScreen"
+            KeyDown="MainWindow_KeyDown"
+
+            WindowStyle="None"
+            Background="Transparent"
+            ResizeMode="CanResizeWithGrip"
+            AllowsTransparency="True"
+            >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Sonny.Framing;component/WPFResource/SonnyBIMResource.xaml" />
+                <!--<ResourceDictionary Source="/SonnyBIM;component/02.Resources/Languages/OnlineLicense/UserLicenseWindow.vi.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <materialDesign:Card Background="White" UniformCornerRadius="4" Margin="6"
+                             BorderThickness="1.5" BorderBrush="{StaticResource MauPhuSonnyBIM}" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title Bar - Mouse event để di chuyển cửa sổ -->
+            <Grid Grid.Row="0" Background="{StaticResource MauTitleBarSonnyBIM}"
+                      MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Title and Logo -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="10,0,0,0">
+
+                    <TextBlock Text="{Binding TitleCaption}"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"
+                                   FontFamily="{StaticResource SonnyBIM_TitleFontFamily}"
+                                   FontWeight="{StaticResource SonnyBIM_WindowTitleFontWeight}"
+                                   FontSize="16"
+                                   Foreground="{StaticResource MauPhuSonnyBIM}"/>
+                </StackPanel>
+
+                <!-- Window Controls -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+
+                    <!-- Open Website Button -->
+                    <Button Width="32" Height="32" Padding="0" Margin="0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding Path=OpenWebSite}" ToolTip="{Binding OpenWebSiteToolTip}" >
+                        <materialDesign:PackIcon Kind="HomeCircle" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
+                    </Button>
+
+                    <!-- Custom Development Button -->
+                    <Button Width="32" Height="32" Padding="0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding Path=CustomDevelopment}"
+                                ToolTip="{Binding CustomDevelopmentToolTip}">
+                        <materialDesign:PackIcon Kind="DeveloperBoard" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}" />
+                    </Button>
+
+
+                    <!-- Minimize Button -->
+                    <Button  Width="34" Height="34" Padding="0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Click="MinimizeButton_Click">
+                        <materialDesign:PackIcon Kind="WindowMinimize" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
+                    </Button>
+
+                    <!-- Maximize Button -->
+                    <Button  Width="34" Height="34" Padding="0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Click="MaximizeButton_Click">
+                        <materialDesign:PackIcon x:Name="MaximizeIcon" Kind="WindowMaximize" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
+                    </Button>
+
+                    <!-- Close Button -->
+                    <Button Width="34" Height="34" Padding="0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                Click="CloseButton_Click">
+                        <materialDesign:PackIcon Kind="Close" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Main Content -->
+            <Grid Grid.Row="1" x:Name="MainGrid">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox Grid.Column="0" Grid.ColumnSpan="2"
+                          materialDesign:HintAssist.Hint="{Binding SelectedLayerHint}"
+                          ItemsSource="{Binding AllLayers}"
+                          SelectedItem="{Binding SelectedLayer}"
+                          IsEditable="True"
+                           />
+
+                        <ComboBox Grid.Column="0" Grid.Row="1"
+                          Grid.ColumnSpan="2"
+                          materialDesign:HintAssist.Hint="{Binding SelectedFamilyFramingHint}"
+                          ItemsSource="{Binding AllFamiliesFraming}"
+                          SelectedItem="{Binding SelectedFamilyFraming}"
+                          DisplayMemberPath="Name"
+                          IsEditable="True" />
+
+                        <ComboBox Grid.Row="2" Grid.Column="0"
+                          materialDesign:HintAssist.Hint="{Binding WidthParameterHint}"
+                          ItemsSource="{Binding AllFramingTypeParameter }"
+                          SelectedItem="{Binding WidthParameter}" />
+
+                        <ComboBox Grid.Row="2" Grid.Column="1"
+                          materialDesign:HintAssist.Hint="{Binding HeightParameterHint}"
+                          ItemsSource="{Binding AllFramingTypeParameter }"
+                          SelectedItem="{Binding HeightParameter}" />
+
+                        <ComboBox Grid.Row="3" Grid.ColumnSpan="1"
+                          materialDesign:HintAssist.Hint="{Binding ReferenceLevelHint}"
+                          ItemsSource="{Binding AllLevel}"
+                          SelectedItem="{Binding ReferenceLevel}"
+                          DisplayMemberPath="Name"
+                          IsEditable="True" />
+
+                        <TextBox Grid.Row="3" Grid.Column="1"
+                         materialDesign:HintAssist.Hint="{Binding ZOffsetHint}"
+                         ToolTip="{Binding ZOffsetToolTip}"
+                         Text="{Binding ZOffset}"/>
+
+                        <TextBox Grid.Row="4" Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         materialDesign:HintAssist.Hint="{Binding AllSectionsHint}"
+                         ToolTip="{Binding AllSectionsToolTip}"
+                         Text="{Binding AllSections}"
+                         HorizontalContentAlignment="Left" />
+
+                    </Grid>
+
+                    <DockPanel Dock="Bottom" Margin="4"
+                       VerticalAlignment="Bottom">
+
+                        <CheckBox
+                    Content="{Binding IsCreateForSingleLineCap}"
+                    ToolTip="{Binding IsCreateForSingleLineToolTip}"
+                    IsChecked="{Binding IsCreateForSingleLine}" />
+
+                        <CheckBox
+                    Content="{Binding IsDisallowJoinCap}"
+                    IsChecked="{Binding IsDisallowJoin}"
+                    ToolTip="{Binding IsDisallowJoinToolTip}"
+                />
+
+                        <Button DockPanel.Dock="Right"
+                        TabIndex="1000"
+                        Content="{Binding CancelCap}"
+                        Width="100"
+                        Click="btnCancel_Click"
+                        IsCancel="True" />
+
+                        <Button DockPanel.Dock="Right"
+                        TabIndex="6"
+                        HorizontalAlignment="Right"
+                        Content="{Binding OkCap}"
+                        Width="100"
+                        Click="btnOk_Click" />
+
+                <!--         <Button VerticalAlignment="Bottom" -->
+                <!--         HorizontalAlignment="Right" -->
+                <!--         HorizontalContentAlignment="Left" -->
+                <!--         Content="{Binding UserManualCaption}" -->
+                <!--         MinWidth="120" -->
+                <!--         Click="btnHelp_Click" -->
+                <!-- /> -->
+
+                    </DockPanel>
+
+                </DockPanel>
+            </Grid>
+
+
+        </Grid>
+    </materialDesign:Card>
+</Window>

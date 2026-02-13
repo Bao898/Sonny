@@ -1,0 +1,85 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    >
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- MaterialDesign -->
+        <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />-->
+
+        <!-- Custom Styles -->
+        <ResourceDictionary Source="GeneralStyles.xaml" />
+
+    </ResourceDictionary.MergedDictionaries>
+
+
+
+
+
+    <!--<LinearGradientBrush x:Key="MauChinhSonnyBIM" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#FFCA28"/>
+        <GradientStop Offset="0.3" Color="#FDBD10"/>
+        <GradientStop Offset="0.7" Color="#F9A825"/>
+        <GradientStop Offset="1" Color="#EF6C00"/>
+    </LinearGradientBrush>-->
+
+    <LinearGradientBrush x:Key="MauTitleBarSonnyBIM" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#FFCA28"/>
+        <GradientStop Offset="0.3" Color="#FDBD10"/>
+        <GradientStop Offset="0.7" Color="#F9A825"/>
+        <GradientStop Offset="1" Color="#EF6C00"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="MauChinhSonnyBIM" Color="#0078D4"/>
+    <SolidColorBrush x:Key="MauChuButtonSonnyBIM" Color="WhiteSmoke"/>
+    <SolidColorBrush x:Key="SonnyBIM_IconColor" Color="Black"/>
+    <SolidColorBrush x:Key="MauRowDataGrid" Color="LightGoldenrodYellow"/>
+    <SolidColorBrush x:Key="MauPhuSonnyBIM" Color="#1E235B"/>
+    <SolidColorBrush x:Key="SonnyBIM_MauNenDataGrid" Color="AliceBlue"/>
+
+
+
+
+    <LinearGradientBrush x:Key="MauChinhSonnyBIM_IsSelected"
+                     StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#B3E2AC24" />
+        <GradientStop Offset="0.33" Color="#B3E0A925" />
+        <GradientStop Offset="0.66" Color="#B3CC8926" />
+        <GradientStop Offset="1" Color="#B3BA6C28" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MauChinhSonnyBIM_IsMouseOver"
+                   StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#B3E2AC24" />
+        <GradientStop Offset="0.33" Color="#B3E0A925" />
+        <GradientStop Offset="0.66" Color="#B3CC8926" />
+        <GradientStop Offset="1" Color="#B3BA6C28" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MauPhuSonnyBIM.HightLight" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#F4C76A" />
+        <GradientStop Offset="0.33" Color="#F2C269" />
+        <GradientStop Offset="0.66" Color="#E5A46A" />
+        <GradientStop Offset="1" Color="#D6896C" />
+    </LinearGradientBrush>
+
+
+
+    <LinearGradientBrush  x:Key="Indicator.NormalColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#3aadfd" />
+        <GradientStop Offset="0.33" Color="#27a6fe" />
+        <GradientStop Offset="0.66" Color="#139dfe" />
+        <GradientStop Offset="1" Color="#0096ff" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Indicator.HightLightColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#5da3d5" />
+        <GradientStop Offset="0.33" Color="#3f95d1" />
+        <GradientStop Offset="0.66" Color="#2483c5" />
+        <GradientStop Offset="1" Color="#1074ba" />
+    </LinearGradientBrush>
+
+
+
+
+</ResourceDictionary>

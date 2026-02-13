@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- MaterialDesign -->
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+
+        <!-- Custom Styles -->
+        <ResourceDictionary Source="SonnyColors.xaml" />
+        <ResourceDictionary Source="GeneralStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Style cho RichTextBox -->
+    <Style x:Key="SonnyBIM_RichTextBoxDefaultStyle" TargetType="RichTextBox">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="{StaticResource MauChinhSonnyBIM}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="materialDesign:HintAssist.Hint" Value="Enter text here"/>
+        <Setter Property="materialDesign:HintAssist.Foreground" Value="{StaticResource MauChinhSonnyBIM}"/>
+        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MauPhuSonnyBIM}"/>
+        <Setter Property="materialDesign:TextFieldAssist.DecorationVisibility" Value="Collapsed"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource MauPhuSonnyBIM}"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource MauPhuSonnyBIM}"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MauPhuSonnyBIM}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

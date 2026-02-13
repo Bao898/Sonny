@@ -1,0 +1,15 @@
+﻿<RevitAddIns>
+    <AddIn Type="Application">
+        <Name>Sonny.Framing</Name>
+        <Assembly>Sonny.Framing\Sonny.Framing.dll</Assembly>
+        <AddInId>974AD397-F13A-4E93-8F85-E0A1E46E9257</AddInId>
+        <FullClassName>Sonny.Framing.Application</FullClassName>
+        <VendorId>Development</VendorId>
+        <VendorDescription></VendorDescription>
+        <VendorEmail></VendorEmail>
+    </AddIn>
+    <ManifestSettings>
+        <UseRevitContext>False</UseRevitContext>
+        <ContextName>Sonny.Framing</ContextName>
+    </ManifestSettings>
+</RevitAddIns>

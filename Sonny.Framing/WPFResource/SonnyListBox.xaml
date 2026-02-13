@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- MaterialDesign -->
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+
+        <!-- Custom Styles -->
+        <ResourceDictionary Source="SonnyColors.xaml" />
+        <ResourceDictionary Source="GeneralStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Style cho ListBox -->
+    <Style x:Key="SonnyBIM_ListBoxDefaultStyle" TargetType="ListBox"
+           BasedOn="{StaticResource MaterialDesignListBox}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="{StaticResource MauChinhSonnyBIM}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="materialDesign:ElevationAssist.Elevation" Value="Dp2"/>
+        <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection" Value="False"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+    </Style>
+
+    <!-- Style cho ListBoxItem -->
+    <Style x:Key="SonnyBIM_ListBoxItemDefaultStyle" TargetType="ListBoxItem"
+           BasedOn="{StaticResource MaterialDesignListBoxItem}">
+        <Setter Property="Padding" Value="8,2"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="MinHeight" Value="28"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="BorderBrush" Value="#EEEEEE"/>
+        <Setter Property="FontSize" Value="13"/>
+
+        <Style.Triggers>
+            <!-- Hiệu ứng hover -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource MauChinhSonnyBIM_IsMouseOver}"/>
+                <Setter Property="Foreground" Value="{DynamicResource MauPhuSonnyBIM}"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Trigger>
+
+            <!-- Hiệu ứng khi chọn -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource MauChinhSonnyBIM}"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,105 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- MaterialDesign -->
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+
+        <!-- Custom Styles -->
+        <ResourceDictionary Source="SonnyColors.xaml" />
+        <ResourceDictionary Source="GeneralStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Style cho StackPanel -->
+    <Style x:Key="SonnyBIM_StackPanelStyle" TargetType="StackPanel">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!-- Style cho StackPanel với Card Effect -->
+    <Style x:Key="SonnyBIM_StackPanelCardStyle" TargetType="StackPanel">
+        <Setter Property="Margin" Value="8" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1" BlurRadius="5" Opacity="0.3" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Style cho WrapPanel -->
+    <Style x:Key="SonnyBIM_WrapPanelStyle" TargetType="WrapPanel">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!-- Style cho DockPanel -->
+    <Style x:Key="SonnyBIM_DockPanelStyle" TargetType="DockPanel">
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="LastChildFill" Value="True" />
+    </Style>
+
+    <!-- Style cho Grid -->
+    <Style x:Key="SonnyBIM_GridStyle" TargetType="Grid">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!-- Style cho Grid với Card Effect -->
+    <Style x:Key="SonnyBIM_GridCardStyle" TargetType="Grid">
+        <Setter Property="Margin" Value="8" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1" BlurRadius="5" Opacity="0.3" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Style cho UniformGrid -->
+    <Style x:Key="SonnyBIM_UniformGridStyle" TargetType="UniformGrid">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!-- Style cho Grid với SonnyBIM Border -->
+    <Style x:Key="SonnyBIM_GridBorderedStyle" TargetType="Grid">
+        <Setter Property="Margin" Value="8" />
+        <Setter Property="Background" Value="White" />
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="{StaticResource MauChinhSonnyBIM}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="4" />
+                <!--<Setter Property="Padding" Value="8" />-->
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <!-- Style cho Border -->
+    <Style x:Key="SonnyBIM_BorderStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{StaticResource MauChinhSonnyBIM}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="4" />
+        <!--<Setter Property="Padding" Value="8" />-->
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="4" />
+    </Style>
+
+    <!-- Style cho Border với Rounded Corners -->
+    <Style x:Key="SonnyBIM_RoundedBorderStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{StaticResource MauChinhSonnyBIM}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="8" />
+        <!--<Setter Property="Padding" Value="12" />-->
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="1" BlurRadius="3" Opacity="0.2" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+>
+
+    <ResourceDictionary.MergedDictionaries>
+
+
+    </ResourceDictionary.MergedDictionaries>
+
+
+
+    <!-- Font chữ của title của window: Segoe UI, Raleway,......-->
+    <FontFamily x:Key="SonnyBIM_TitleFontFamily">Raleway</FontFamily>
+
+    <!-- Font chữ của textBox: Segoe UI, Inter,......-->
+    <FontFamily x:Key="SonnyBIM_TextboxFontFamily">Inter</FontFamily>
+
+    <!-- FontWeight của title của window: Bold, SemiBold,......-->
+    <FontWeight x:Key="SonnyBIM_WindowTitleFontWeight">SemiBold</FontWeight>
+
+</ResourceDictionary>

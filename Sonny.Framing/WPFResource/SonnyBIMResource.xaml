@@ -1,0 +1,155 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:sonnybim="clr-namespace:SonnyBIM.WPF.Controls"
+                    >
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- MahApps -->
+        <!--dòng này quan trọng để khỏi bị đen màn hình-->
+        <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />-->
+
+        <!-- Converters -->
+        <ResourceDictionary Source="Converters.xaml" />
+
+
+        <!-- MaterialDesign -->
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SplitButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PasswordBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.GroupBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Expander.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DataGrid.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TreeView.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DatePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
+
+        <!-- Custom Styles -->
+        <ResourceDictionary Source="SonnyColors.xaml" />
+        <ResourceDictionary Source="SonnyButton.xaml" />
+        <ResourceDictionary Source="SonnyComboBox.xaml" />
+        <ResourceDictionary Source="SonnyCheckBox.xaml" />
+        <ResourceDictionary Source="SonnyTextBox.xaml" />
+        <ResourceDictionary Source="SonnyRadioButton.xaml"/>
+        <ResourceDictionary Source="SonnyGroupBox.xaml"/>
+        <ResourceDictionary Source="SonnyExpander.xaml"/>
+        <ResourceDictionary Source="SonnyTabControl.xaml"/>
+        <ResourceDictionary Source="SonnyDataGrid.xaml"/>
+        <ResourceDictionary Source="SonnyListBox.xaml"/>
+        <ResourceDictionary Source="SonnyTreeView.xaml"/>
+        <ResourceDictionary Source="SonnyRichTextBox.xaml"/>
+        <ResourceDictionary Source="SonnySlider.xaml"/>
+        <ResourceDictionary Source="SonnyPanel.xaml"/>
+        <ResourceDictionary Source="SonnyDatePickers.xaml"/>
+        <ResourceDictionary Source="SonnyTextBlock.xaml"/>
+        <ResourceDictionary Source="SonnyNumericUpDown.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+
+    <Style TargetType="{x:Type Button}"
+            BasedOn="{StaticResource SonnyBIM_ButtonDefaultStyle}" />
+
+    <Style TargetType="{x:Type ComboBox}"
+            BasedOn="{StaticResource SonnyBIM_ComboBoxDefaultStyle}" />
+
+    <Style TargetType="{x:Type CheckBox}"
+            BasedOn="{StaticResource SonnyBIM_CheckBoxDefaultStyle}" />
+
+    <Style TargetType="{x:Type TextBox}"
+            BasedOn="{StaticResource SonnyBIM_TextBoxDefaultStyle}" />
+
+    <Style TargetType="{x:Type PasswordBox}"
+            BasedOn="{StaticResource SonnyBIM_PasswordBoxDefaultStyle}" />
+
+    <Style TargetType="{x:Type RadioButton}"
+            BasedOn="{StaticResource SonnyBIM_RadioButtonDefaultStyle}" />
+
+    <Style TargetType="{x:Type GroupBox}"
+            BasedOn="{StaticResource SonnyBIM_GroupBoxCardStyle}" />
+
+    <Style TargetType="{x:Type Expander}"
+            BasedOn="{StaticResource SonnyBIM_ExpanderCardStyle}" />
+    <!--BasedOn="{StaticResource SonnyBIM_ExpanderFlatStyle}" />-->
+
+    <Style TargetType="{x:Type TabControl}"
+            BasedOn="{StaticResource SonnyBIM_TabControlDefaultStyle}" />
+
+    <Style TargetType="{x:Type TabItem}"
+            BasedOn="{StaticResource SonnyBIM_TabItemDefaultStyle}" />
+
+
+
+    <Style TargetType="{x:Type DataGrid}"
+            BasedOn="{StaticResource SonnyBIM_DataGridStyle}" />
+
+    <Style TargetType="{x:Type DataGridRow}"
+        BasedOn="{StaticResource SonnyBIM_DataGridRowStyle}" />
+
+    <Style TargetType="{x:Type DataGridColumnHeader}"
+        BasedOn="{StaticResource SonnyBIM_DataGridColumnHeaderStyle}" />
+
+
+    <Style TargetType="{x:Type ListBox}"
+        BasedOn="{StaticResource SonnyBIM_ListBoxDefaultStyle}" />
+
+    <Style TargetType="{x:Type ListBoxItem}"
+        BasedOn="{StaticResource SonnyBIM_ListBoxItemDefaultStyle}" />
+
+    <Style TargetType="{x:Type TreeView}"
+        BasedOn="{StaticResource SonnyBIM_TreeViewDefaultStyle}" />
+
+    <Style TargetType="{x:Type TreeViewItem}"
+        BasedOn="{StaticResource SonnyBIM_TreeViewItemDefaultStyle}" />
+
+    <Style TargetType="{x:Type RichTextBox}"
+        BasedOn="{StaticResource SonnyBIM_RichTextBoxDefaultStyle}" />
+
+    <Style TargetType="{x:Type TextBlock}"
+        BasedOn="{StaticResource SonnyBIM_TextBlockDefaultStyle}" />
+
+    <Style TargetType="{x:Type Slider}"
+        BasedOn="{StaticResource SonnyBIM_Slider}" />
+
+    <Style TargetType="{x:Type ProgressBar}"
+        BasedOn="{StaticResource SonnyBIM_ProgressBar}" />
+
+    <Style TargetType="{x:Type Border}"
+        BasedOn="{StaticResource SonnyBIM_BorderStyle}" />
+
+    <Style TargetType="{x:Type DatePicker}"
+        BasedOn="{StaticResource SonnyBIM_DatePickerStyle}" />
+
+    <Style TargetType="{x:Type Calendar}"
+        BasedOn="{StaticResource SonnyBIM_CalendarStyle}" />
+
+
+    <Style TargetType="{x:Type Grid}"
+        BasedOn="{StaticResource SonnyBIM_GridStyle}" />
+
+    <Style TargetType="{x:Type DockPanel}"
+        BasedOn="{StaticResource SonnyBIM_DockPanelStyle}" />
+
+    <Style TargetType="{x:Type StackPanel}"
+        BasedOn="{StaticResource SonnyBIM_StackPanelStyle}" />
+
+    <Style TargetType="{x:Type WrapPanel}"
+        BasedOn="{StaticResource SonnyBIM_WrapPanelStyle}" />
+
+    <Style TargetType="{x:Type sonnybim:NumericUpDown}"
+        BasedOn="{StaticResource SonnyBIM_NumericUpDownDefaultStyle}" />
+
+</ResourceDictionary>
+
