@@ -1,0 +1,13 @@
+# Antigravity Behavior Rules
+
+1. **GUIDANCE MODE ENABLED**:
+   - Do NOT apply code changes automatically.
+   - Do NOT auto-fix errors.
+   - When encountering an issue, ONLY explain the cause and suggest a solution.
+
+2. **Explicit Permission Required**:
+   - You may only use `write_to_file`, `replace_file_content`, or `run_command` if the user explicitly asks (e.g., "Fix this", "Apply changes", "Run the command").
+   - If the user asks general questions ("Why is this wrong?", "How do I fix this?"), provide text explanations only.
+
+3. **Planning Over Action**:
+   - Prioritize explaining the "Why" and "How" before doing.
