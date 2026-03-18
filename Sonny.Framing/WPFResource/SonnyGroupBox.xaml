@@ -57,12 +57,12 @@
            >
 
         <Setter Property="Margin" Value="5"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MauPhuSonnyBIM}"/>
+        <Setter Property="BorderBrush" Value="#F5F5F5"/>
 
-        <Setter Property="materialDesign:ColorZoneAssist.Background" Value="{DynamicResource MauChinhSonnyBIM}"/>
-        <Setter Property="materialDesign:ColorZoneAssist.Foreground"  Value="{DynamicResource MauChuButtonSonnyBIM}"/>
+        <Setter Property="materialDesign:ColorZoneAssist.Background" Value="#F5F5F5"/>
+        <Setter Property="materialDesign:ColorZoneAssist.Foreground"  Value="#333333"/>
         <Setter Property="materialDesign:ColorZoneAssist.Mode"  Value="Custom"/>
-        <Setter Property="materialDesign:ElevationAssist.Elevation"  Value="Dp6"/>
+        <Setter Property="materialDesign:ElevationAssist.Elevation"  Value="Dp0"/>
 
 
         <!-- Tùy chỉnh kiểu hiển thị cho Header (nếu cần) -->
@@ -77,7 +77,7 @@
                                      FontFamily=  "{DynamicResource SonnyBIM_TitleFontFamily}"
                                      FontSize="14"
                                      FontWeight="SemiBold"
-                                     Foreground="{DynamicResource MauChuButtonSonnyBIM}"
+                                     Foreground="#333333"
                                   />
                     </StackPanel>
                 </DataTemplate>

@@ -74,6 +74,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\source\Sonny.Application.Domain\Sonny.Application.Domain.csproj" />
+      <ProjectReference Include="..\source\Sonny.Application.Presentation\Sonny.Application.Presentation.csproj" />
       <ProjectReference Include="..\source\Sonny.RevitExtensions\source\Sonny.RevitExtensions\Sonny.RevitExtensions.csproj" />
     </ItemGroup>
 
@@ -81,6 +83,28 @@
       <Reference Include="LookupEngine.UI">
         <HintPath>C:\Users\25120002\AppData\Roaming\Autodesk\Revit\Addins\2026\RevitLookup\LookupEngine.UI.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Remove="SonnyStr\FramingFromCadProcess.xaml" />
+      <Page Remove="WPFResource\**" />
+      <Page Remove="License\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="SonnyStr\FramingFromCadProcess.xaml.cs" />
+      <Compile Remove="WPFResource\**" />
+      <Compile Remove="License\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="WPFResource\**" />
+      <EmbeddedResource Remove="License\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="WPFResource\**" />
+      <None Remove="License\**" />
     </ItemGroup>
 
 </Project>

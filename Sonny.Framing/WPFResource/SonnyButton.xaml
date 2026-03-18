@@ -34,8 +34,8 @@
            >
         <!--BasedOn="{StaticResource MaterialDesignRaisedLightButton}"-->
 
-        <Setter Property="Background" Value="{StaticResource MauChinhSonnyBIM}"/>
-        <Setter Property="Foreground" Value="{StaticResource MauChuButtonSonnyBIM}"/>
+        <Setter Property="Background" Value="#F5F5F5"/>
+        <Setter Property="Foreground" Value="#333333"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -43,7 +43,7 @@
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="32" />
         <Setter Property="Margin" Value="3" />
-        <Setter Property="BorderBrush" Value="#3C3C3C "/>
+        <Setter Property="BorderBrush" Value="#CCCCCC "/>
         <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="4"/>
 
         <Setter Property="Effect">

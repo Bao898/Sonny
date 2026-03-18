@@ -30,11 +30,11 @@
         <GradientStop Offset="1" Color="#EF6C00"/>
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="MauChinhSonnyBIM" Color="#0078D4"/>
+    <SolidColorBrush x:Key="MauChinhSonnyBIM" Color="Black"/>
     <SolidColorBrush x:Key="MauChuButtonSonnyBIM" Color="WhiteSmoke"/>
     <SolidColorBrush x:Key="SonnyBIM_IconColor" Color="Black"/>
     <SolidColorBrush x:Key="MauRowDataGrid" Color="LightGoldenrodYellow"/>
-    <SolidColorBrush x:Key="MauPhuSonnyBIM" Color="#1E235B"/>
+    <SolidColorBrush x:Key="MauPhuSonnyBIM" Color="Black"/>
     <SolidColorBrush x:Key="SonnyBIM_MauNenDataGrid" Color="AliceBlue"/>
 
 

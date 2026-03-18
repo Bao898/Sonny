@@ -63,21 +63,19 @@
         <Style.Triggers>
             <!-- Thay đổi màu nền khi rê chuột vào item -->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource MauTitleBarSonnyBIM}" />
-                <Setter Property="Foreground" Value="{DynamicResource MauPhuSonnyBIM}"/>
+                <Setter Property="Background" Value="LightBlue" />
             </Trigger>
 
             <!-- Thay đổi màu nền khi item được chọn -->
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{DynamicResource MauTitleBarSonnyBIM}" />
-                <Setter Property="Foreground" Value="{DynamicResource MauPhuSonnyBIM}"/>
+                <Setter Property="Background" Value="LightGray" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <!-- Style cho popup ComboBox -->
     <Style x:Key="SonnyBIM_ComboBoxDropdownStyle" TargetType="{x:Type ListBox}">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="LightBlue"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MauChinhSonnyBIM}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="0"/>
@@ -150,10 +148,10 @@
            BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}"
            >
 
-        <Setter Property="BorderBrush" Value="{StaticResource MauChinhSonnyBIM}"/>
+        <Setter Property="BorderBrush" Value="White"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="IsEditable" Value="True"/>
-        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MauPhuSonnyBIM}"/>
+        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="White"/>
         <Setter Property="materialDesign:HintAssist.FloatingScale" Value="0.85"/>
         <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="0,-12"/>
         <Setter Property="Height" Value="28"/>
@@ -163,7 +161,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="3"/>
-        <Setter Property="Foreground" Value="{DynamicResource MauPhuSonnyBIM}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MauChinhSonnyBIM}"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Standard"/>
@@ -174,13 +172,18 @@
 
         <!-- Thêm ItemContainerStyle để thay đổi màu nền khi rê chuột -->
         <Setter Property="ItemContainerStyle" Value="{StaticResource SonnyBIM_ComboBoxItemStyle}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="LightBlue"/> <!-- Chỉnh màu bạn muốn ở đây -->
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- Border cho ComboBox Popup -->
     <Style x:Key="SonnyBIM_ComboBoxPopupBorderStyle" TargetType="Border">
         <Setter Property="BorderBrush" Value="{DynamicResource MauChinhSonnyBIM}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="LightBlue"/>
         <Setter Property="CornerRadius" Value="3"/>
         <Setter Property="Effect">
             <Setter.Value>

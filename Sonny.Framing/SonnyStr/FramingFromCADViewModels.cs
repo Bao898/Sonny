@@ -279,26 +279,26 @@ namespace SonnyBIM
 
             SelectedLayerHint = BindingUtils.ChangeLanguage(_languageCode,
                 "Chọn Layer của nét Dầm",
-                "Choose Layer of Beam");
+                "Select Layer");
 
             SelectedFamilyFramingHint = BindingUtils.ChangeLanguage(_languageCode,
                 "Chọn Family Dầm",
-                "Choose Beam Family");
+                "Beam Family");
 
 
             WidthParameterHint = BindingUtils.ChangeLanguage(_languageCode,
                 "Chọn Parameter Chiều Rộng Dầm",
-                "Choose Width Parameter");
+                "Width Parameter");
 
 
             HeightParameterHint = BindingUtils.ChangeLanguage(_languageCode,
                 "Chọn Parameter Chiều Cao Dầm",
-                "Choose Height Parameter");
+                "Height Parameter");
 
 
             ReferenceLevelHint = BindingUtils.ChangeLanguage(_languageCode,
                 "Chọn Level Đặt Dầm",
-                "Choose Reference Level");
+                "Reference Level");
 
 
             ZOffsetHint = BindingUtils.ChangeLanguage(_languageCode,

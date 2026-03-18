@@ -7,202 +7,144 @@
             mc:Ignorable="d"
             xmlns:Sonnybim="clr-namespace:SonnyBIM"
             d:DataContext="{d:DesignInstance Type=Sonnybim:FramingFromCADViewModel}"
-
-            Height="380" Width="660"
+            Title="{Binding TitleCaption}"
+            Height="600" Width="500"
             WindowStartupLocation="CenterScreen"
             KeyDown="MainWindow_KeyDown"
 
-            WindowStyle="None"
-            Background="Transparent"
-            ResizeMode="CanResizeWithGrip"
-            AllowsTransparency="True"
+            Background="White"
+            ResizeMode="CanResize"
             >
 
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Sonny.Framing;component/WPFResource/SonnyBIMResource.xaml" />
+                <!-- <ResourceDictionary Source="pack://application:,,,/Sonny.Framing;component/WPFResource/SonnyBIMResource.xaml" /> -->
                 <!--<ResourceDictionary Source="/SonnyBIM;component/02.Resources/Languages/OnlineLicense/UserLicenseWindow.vi.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
-    <materialDesign:Card Background="White" UniformCornerRadius="4" Margin="6"
-                             BorderThickness="1.5" BorderBrush="{StaticResource MauPhuSonnyBIM}" >
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!-- Title Bar - Mouse event để di chuyển cửa sổ -->
-            <Grid Grid.Row="0" Background="{StaticResource MauTitleBarSonnyBIM}"
-                      MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Title and Logo -->
-                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="10,0,0,0">
-
-                    <TextBlock Text="{Binding TitleCaption}"
-                                   VerticalAlignment="Center"
-                                   Margin="10,0,0,0"
-                                   FontFamily="{StaticResource SonnyBIM_TitleFontFamily}"
-                                   FontWeight="{StaticResource SonnyBIM_WindowTitleFontWeight}"
-                                   FontSize="16"
-                                   Foreground="{StaticResource MauPhuSonnyBIM}"/>
-                </StackPanel>
-
-                <!-- Window Controls -->
-                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-
-                    <!-- Open Website Button -->
-                    <Button Width="32" Height="32" Padding="0" Margin="0"
-                                Style="{StaticResource MaterialDesignFlatButton}"
-                                Command="{Binding Path=OpenWebSite}" ToolTip="{Binding OpenWebSiteToolTip}" >
-                        <materialDesign:PackIcon Kind="HomeCircle" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
-                    </Button>
-
-                    <!-- Custom Development Button -->
-                    <Button Width="32" Height="32" Padding="0"
-                                Style="{StaticResource MaterialDesignFlatButton}"
-                                Command="{Binding Path=CustomDevelopment}"
-                                ToolTip="{Binding CustomDevelopmentToolTip}">
-                        <materialDesign:PackIcon Kind="DeveloperBoard" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}" />
-                    </Button>
-
-
-                    <!-- Minimize Button -->
-                    <Button  Width="34" Height="34" Padding="0"
-                                Style="{StaticResource MaterialDesignFlatButton}"
-                                Click="MinimizeButton_Click">
-                        <materialDesign:PackIcon Kind="WindowMinimize" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
-                    </Button>
-
-                    <!-- Maximize Button -->
-                    <Button  Width="34" Height="34" Padding="0"
-                                Style="{StaticResource MaterialDesignFlatButton}"
-                                Click="MaximizeButton_Click">
-                        <materialDesign:PackIcon x:Name="MaximizeIcon" Kind="WindowMaximize" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
-                    </Button>
-
-                    <!-- Close Button -->
-                    <Button Width="34" Height="34" Padding="0"
-                                Style="{StaticResource MaterialDesignFlatButton}"
-                                Click="CloseButton_Click">
-                        <materialDesign:PackIcon Kind="Close" Width="18" Height="18" Foreground="{StaticResource MauPhuSonnyBIM}"/>
-                    </Button>
-                </StackPanel>
-            </Grid>
-
             <!-- Main Content -->
             <Grid Grid.Row="1" x:Name="MainGrid">
-                <DockPanel>
-                    <Grid DockPanel.Dock="Top">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                        <ComboBox Grid.Column="0" Grid.ColumnSpan="2"
-                          materialDesign:HintAssist.Hint="{Binding SelectedLayerHint}"
-                          ItemsSource="{Binding AllLayers}"
-                          SelectedItem="{Binding SelectedLayer}"
-                          IsEditable="True"
-                           />
+                    <!-- Scrollable Content Area -->
+                    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="0,0,5,0">
+                            <!-- GROUP 1: LAYER SELECTION -->
+                            <GroupBox Header="Layer Selection" Margin="0,0,0,10">
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" MinWidth="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding SelectedLayerHint}"
+                                               VerticalAlignment="Center"/>
+                                    <ComboBox Grid.Column="1" Margin="5,0,0,0"
+                                              ItemsSource="{Binding AllLayers}"
+                                              SelectedItem="{Binding SelectedLayer}"
+                                              IsEditable="False"/>
+                                </Grid>
+                            </GroupBox>
 
-                        <ComboBox Grid.Column="0" Grid.Row="1"
-                          Grid.ColumnSpan="2"
-                          materialDesign:HintAssist.Hint="{Binding SelectedFamilyFramingHint}"
-                          ItemsSource="{Binding AllFamiliesFraming}"
-                          SelectedItem="{Binding SelectedFamilyFraming}"
-                          DisplayMemberPath="Name"
-                          IsEditable="True" />
+                            <!-- GROUP 2: BEAM FAMILY -->
+                            <GroupBox Header="Beam Family" Margin="0,0,0,10">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" MinWidth="150" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!-- Beam Family -->
+                                    <TextBlock Grid.Row="0" Text="{Binding SelectedFamilyFramingHint}"
+                                               VerticalAlignment="Center" Margin="0,5" />
+                                    <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,5,0,5"
+                                              ItemsSource="{Binding AllFamiliesFraming}"
+                                              SelectedItem="{Binding SelectedFamilyFraming}"
+                                              DisplayMemberPath="Name"
+                                              IsEditable="False"/>
+                                    <!-- Width Parameter -->
+                                    <TextBlock Grid.Row="1" Text="{Binding WidthParameterHint}"
+                                               VerticalAlignment="Center" Margin="0,5" />
+                                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="5,5,0,5"
+                                              ItemsSource="{Binding AllFramingTypeParameter}"
+                                              SelectedItem="{Binding WidthParameter}"
+                                              IsEditable="False"/>
+                                    <!-- Height Parameter -->
+                                    <TextBlock Grid.Row="2" Text="{Binding HeightParameterHint}"
+                                               VerticalAlignment="Center" Margin="0,5" />
+                                    <ComboBox Grid.Row="2" Grid.Column="1" Margin="5,5,0,5"
+                                              ItemsSource="{Binding AllFramingTypeParameter}"
+                                              SelectedItem="{Binding HeightParameter}"
+                                              IsEditable="False"/>
+                                    <!-- All Sections -->
+                                    <TextBlock Grid.Row="3" Grid.ColumnSpan="2"
+                                               Text="{Binding AllSectionsHint}"
+                                               VerticalAlignment="Center" Margin="0,5,0,2" />
+                                    <TextBox Grid.Row="4" Grid.ColumnSpan="2"
+                                             Margin="0,2,0,5"
+                                             ToolTip="{Binding AllSectionsToolTip}"
+                                             Text="{Binding AllSections}" />
+                                </Grid>
 
-                        <ComboBox Grid.Row="2" Grid.Column="0"
-                          materialDesign:HintAssist.Hint="{Binding WidthParameterHint}"
-                          ItemsSource="{Binding AllFramingTypeParameter }"
-                          SelectedItem="{Binding WidthParameter}" />
+                            </GroupBox>
 
-                        <ComboBox Grid.Row="2" Grid.Column="1"
-                          materialDesign:HintAssist.Hint="{Binding HeightParameterHint}"
-                          ItemsSource="{Binding AllFramingTypeParameter }"
-                          SelectedItem="{Binding HeightParameter}" />
+                            <!-- GROUP 3: LEVELS -->
+                            <GroupBox Header="Levels" Margin="0,0,0,10">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" MinWidth="150" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!-- Reference Level -->
+                                    <TextBlock Grid.Row="0" Text="{Binding ReferenceLevelHint}" VerticalAlignment="Center" Margin="0,5" />
+                                    <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,5,0,5"
+                                              ItemsSource="{Binding AllLevel}"
+                                              SelectedItem="{Binding ReferenceLevel}"
+                                              DisplayMemberPath="Name"
+                                              IsEditable="False"/>
+                                    <!-- Z Offset -->
+                                    <TextBlock Grid.Row="1" Text="{Binding ZOffsetHint}" VerticalAlignment="Center" Margin="0,5" />
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,0,5"
+                                             ToolTip="{Binding ZOffsetToolTip}"
+                                             Text="{Binding ZOffset}"/>
+                                </Grid>
+                            </GroupBox>
 
-                        <ComboBox Grid.Row="3" Grid.ColumnSpan="1"
-                          materialDesign:HintAssist.Hint="{Binding ReferenceLevelHint}"
-                          ItemsSource="{Binding AllLevel}"
-                          SelectedItem="{Binding ReferenceLevel}"
-                          DisplayMemberPath="Name"
-                          IsEditable="True" />
+                            <!-- Additional Options (CheckBoxes) -->
+                            <StackPanel Orientation="Horizontal" Margin="5,5,0,15">
+                                <CheckBox Content="{Binding IsCreateForSingleLineCap}" Margin="0,0,20,0"
+                                          ToolTip="{Binding IsCreateForSingleLineToolTip}"
+                                          IsChecked="{Binding IsCreateForSingleLine}" />
+                                <CheckBox Content="{Binding IsDisallowJoinCap}"
+                                          IsChecked="{Binding IsDisallowJoin}"
+                                          ToolTip="{Binding IsDisallowJoinToolTip}" />
+                            </StackPanel>
 
-                        <TextBox Grid.Row="3" Grid.Column="1"
-                         materialDesign:HintAssist.Hint="{Binding ZOffsetHint}"
-                         ToolTip="{Binding ZOffsetToolTip}"
-                         Text="{Binding ZOffset}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- Footer Buttons -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+                        <Button Content="{Binding OkCap}" Width="100" Height="30" Click="btnOk_Click" Margin="0,0,10,0" />
+                        <Button Content="{Binding CancelCap}" Width="100" Height="30" Click="btnCancel_Click" IsCancel="True" />
+                    </StackPanel>
+                </Grid>
 
-                        <TextBox Grid.Row="4" Grid.Column="0"
-                         Grid.ColumnSpan="2"
-                         materialDesign:HintAssist.Hint="{Binding AllSectionsHint}"
-                         ToolTip="{Binding AllSectionsToolTip}"
-                         Text="{Binding AllSections}"
-                         HorizontalContentAlignment="Left" />
-
-                    </Grid>
-
-                    <DockPanel Dock="Bottom" Margin="4"
-                       VerticalAlignment="Bottom">
-
-                        <CheckBox
-                    Content="{Binding IsCreateForSingleLineCap}"
-                    ToolTip="{Binding IsCreateForSingleLineToolTip}"
-                    IsChecked="{Binding IsCreateForSingleLine}" />
-
-                        <CheckBox
-                    Content="{Binding IsDisallowJoinCap}"
-                    IsChecked="{Binding IsDisallowJoin}"
-                    ToolTip="{Binding IsDisallowJoinToolTip}"
-                />
-
-                        <Button DockPanel.Dock="Right"
-                        TabIndex="1000"
-                        Content="{Binding CancelCap}"
-                        Width="100"
-                        Click="btnCancel_Click"
-                        IsCancel="True" />
-
-                        <Button DockPanel.Dock="Right"
-                        TabIndex="6"
-                        HorizontalAlignment="Right"
-                        Content="{Binding OkCap}"
-                        Width="100"
-                        Click="btnOk_Click" />
-
-                <!--         <Button VerticalAlignment="Bottom" -->
-                <!--         HorizontalAlignment="Right" -->
-                <!--         HorizontalContentAlignment="Left" -->
-                <!--         Content="{Binding UserManualCaption}" -->
-                <!--         MinWidth="120" -->
-                <!--         Click="btnHelp_Click" -->
-                <!-- /> -->
-
-                    </DockPanel>
-
-                </DockPanel>
             </Grid>
 
-
-        </Grid>
-    </materialDesign:Card>
 </Window>

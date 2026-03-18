@@ -36,7 +36,7 @@
         <!--BasedOn="{StaticResource MaterialDesignTextBox}"-->
 
         <!-- MaterialDesign styling -->
-        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MauChinhSonnyBIM}"/>
+        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="White"/>
         <Setter Property="materialDesign:TextFieldAssist.UnderlineCornerRadius" Value="3"/>
         <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="3"/>
         <Setter Property="materialDesign:TextFieldAssist.RippleOnFocusEnabled" Value="True"/>
@@ -44,7 +44,7 @@
         <Setter Property="materialDesign:HintAssist.FloatingScale" Value="0.85"/>
         <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="0,-12"/>
         <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True"/>
-        <Setter Property="BorderBrush" Value="{StaticResource MauChinhSonnyBIM}"/>
+        <Setter Property="BorderBrush" Value="White"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -59,8 +59,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="{DynamicResource MauChinhSonnyBIM_IsMouseOver}"/>
-                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{DynamicResource MauPhuSonnyBIM}"/>
+                <Setter Property="Background" Value="LightBlue"/>
             </Trigger>
             <Trigger Property="IsFocused" Value="True">
                 <Setter Property="BorderBrush" Value="{DynamicResource MauChinhSonnyBIM}"/>

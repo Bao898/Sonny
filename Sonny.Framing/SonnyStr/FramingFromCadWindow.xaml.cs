@@ -4,6 +4,7 @@
 using System.Windows;
 using System.Windows.Input;
 
+
 namespace SonnyBIM
 {
     public partial class FramingFromCadWindow : Window
@@ -49,19 +50,19 @@ namespace SonnyBIM
             this.Close();
         }
 
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-                MaximizeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowMaximize;
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-                MaximizeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowRestore;
-            }
-        }
+        // private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+        // {
+        //     if (this.WindowState == WindowState.Maximized)
+        //     {
+        //         this.WindowState = WindowState.Normal;
+        //         MaximizeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowMaximize;
+        //     }
+        //     else
+        //     {
+        //         this.WindowState = WindowState.Maximized;
+        //         MaximizeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowRestore;
+        //     }
+        // }
 
         private void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -74,11 +75,6 @@ namespace SonnyBIM
             {
                 DialogResult = false;
                 Close();
-            }
-            else if (e.Key == Key.F1)
-            {
-                BrowserHelper.OpenUrlWithBrowserOrCopyToClipboard("https://alphabimvn.com/en/all_plugins/");
-
             }
         }
 
@@ -103,10 +99,5 @@ namespace SonnyBIM
             DialogResult = false;
             Close();
         }
-
-        // private void btnHelp_Click(object sender, RoutedEventArgs e)
-        // {
-        //     BrowserHelper.OpenUrlWithBrowserOrCopyToClipboard("https://youtu.be/MPgzN9JDJ5Q");
-        // }
     }
 }

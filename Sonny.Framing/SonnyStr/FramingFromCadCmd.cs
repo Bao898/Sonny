@@ -3,7 +3,9 @@
 
 using Autodesk.Revit.UI;
 using Autodesk.Revit.Attributes;
+using Sonny.Application.Presentation.Implements;
 using Sonny.Framing.SonnyStr;
+using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 
 namespace SonnyBIM
 {
@@ -18,7 +20,7 @@ namespace SonnyBIM
             Document doc = uidoc.Document;
             string languageCode = LanguageData.GetLanguageSetting();
 
-            string addinName = Q8fdaa690396dbff69bab7eec947f57fc.ModelFromAcad.Item1;
+            //string addinName = Q8fdaa690396dbff69bab7eec947f57fc.ModelFromAcad.Item1;
 
             #region
 
@@ -38,8 +40,27 @@ namespace SonnyBIM
 
                     FramingFromCadWindow window = new FramingFromCadWindow(viewModel);
                     if (window.ShowDialog() == false) { return Result.Cancelled; }
-                    new FramingFromCadProcess(viewModel);
 
+                    // 1. Khởi tạo Người báo cáo tiến độ (Sử dụng ProgressView có sẵn của hệ thống)
+                    var reporter = new FramingProgressReporter();
+                    string title = BindingUtils.ChangeLanguage(languageCode, "Dựng Dầm từ AutoCAD", "Model Framing from AutoCAD");
+                    reporter.Show(title);
+
+                    try {
+                        // 2. Khởi tạo Service và truyền reporter vào
+                        var service = new FramingServices(viewModel, reporter);
+
+                        // 3. Thực hiện thuật toán
+                        service.Execute();
+                    }
+                    catch (Exception ex) {
+                        // Hiển thị lỗi nếu có vấn đề trong quá trình chạy
+                        TaskDialog.Show("Error", ex.Message);
+                    }
+                    finally {
+                        // 4. Luôn đảm bảo đóng cửa sổ Progress khi kết thúc (thành công hoặc thất bại)
+                        reporter.Close();
+                    }
                     txG.Assimilate();
                 }
                 return Result.Succeeded;

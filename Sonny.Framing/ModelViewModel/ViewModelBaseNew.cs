@@ -311,33 +311,6 @@ namespace SonnyBIM
 
         [JsonIgnore]
         [Obfuscation]
-        public ICommand OpenWebSite
-        {
-            get
-            {
-                return new RelayCommand<object>(o =>
-                    {
-                        BrowserHelper.OpenUrlWithBrowserOrCopyToClipboard("https://Sonnybimvn.com/en/");
-                    });
-            }
-        }
-
-
-        [JsonIgnore]
-        [Obfuscation]
-        public ICommand CustomDevelopment
-        {
-            get
-            {
-                return new RelayCommand<object>(o =>
-                {
-                    BrowserHelper.OpenUrlWithBrowserOrCopyToClipboard("http://bit.ly/3bNeJek");
-                });
-            }
-        }
-
-        [JsonIgnore]
-        [Obfuscation]
         public ICommand MinimizeWindow
         {
             get
