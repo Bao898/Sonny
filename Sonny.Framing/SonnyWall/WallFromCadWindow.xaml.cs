@@ -7,14 +7,14 @@ using System.Windows.Input;
 
 namespace SonnyBIM
 {
-    public partial class FramingFromCadWindow : Window
+    public partial class WallFromCadWindow : Window
     {
-        private FramingFromCADViewModel _viewModel;
+        private WallFromCADViewModel _viewModel;
 
-        public FramingFromCadWindow(FramingFromCADViewModel viewModel)
+        public WallFromCadWindow(WallFromCADViewModel viewModel)
         {
             InitializeComponent();
-            _viewModel= viewModel;
+            _viewModel = viewModel;
             DataContext = viewModel;
 
             viewModel.MainWindow = this;
@@ -24,13 +24,11 @@ namespace SonnyBIM
 
         private void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == Key.Space || e.Key == Key.Enter)
-            {
+            if (e.Key == Key.Space || e.Key == Key.Enter) {
                 DialogResult = true;
                 Close();
             }
-            else if (e.Key == Key.Escape)
-            {
+            else if (e.Key == Key.Escape) {
                 DialogResult = false;
                 Close();
             }

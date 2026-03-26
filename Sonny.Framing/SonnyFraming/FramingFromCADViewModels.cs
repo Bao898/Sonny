@@ -3,7 +3,6 @@
 
 using System.Reflection;
 using Autodesk.Revit.UI;
-using Sonny.Framing.SonnyStr;
 
 namespace SonnyBIM
 {

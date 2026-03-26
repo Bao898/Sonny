@@ -58,6 +58,10 @@ public class Application : ExternalApplication
             panel.AddPushButton<FramingFromCadCmd>("Beam from CAD")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+            panel.AddPushButton<WallFromCadCmd>("Wall from CAD")
+                .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
+                .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+
     }
 
 }

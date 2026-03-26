@@ -38,7 +38,7 @@ namespace SonnyBIM
         public static string SettingFolder = Path.Combine(applicationData, autodesk, aplicationPlugins, sonnybim);
 
         public string DllFolder;
-        public static string MessageBoxCaption = "SONNY BIM - SAVE YOUR TIME & MONEY";
+        public static string MessageBoxCaption = "SONNY BIM";
 
         public static string Other32 = "other-32.png";
         public static string Other16 = "other-16.png";

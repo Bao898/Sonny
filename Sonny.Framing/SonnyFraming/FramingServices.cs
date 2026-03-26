@@ -10,6 +10,7 @@ using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
 using Sonny.Application.Domain.Services;
 using Sonny.RevitExtensions.Extensions.GeometryObjects.Curves;
+using MessageBox = System.Windows.Forms.MessageBox;
 using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 
 
@@ -52,7 +53,7 @@ namespace SonnyBIM
             // 2. Hoặc gom thành List chứa chuỗi tọa độ để bạn dễ đọc trong cửa sổ Watch
             List<string> debugPoints = _allLinesFraming.Select(c =>
                 $"L={Math.Round(c.Length, 4)} | Start: {c.GetEndPoint(0)} | End: {c.GetEndPoint(1)}").ToList();
-            #endregion
+            #endregion Add Code To Fix Bug
 
             double rongDam = 0;
             double caoDam = 0;
@@ -113,7 +114,7 @@ namespace SonnyBIM
                             System.Diagnostics.Debug.WriteLine($" - Line B: {b.LineB_Start} to {b.LineB_End} (L={b.LineB_LengthMm})");
                         }
                     }
-                    #endregion
+                    #endregion Add Code To Fix Bug
 
                     if (_viewModel.IsCreateForSingleLine) {
                         foreach (List<Curve> curves in listFramingWithSection) {
@@ -278,12 +279,15 @@ namespace SonnyBIM
                             b.Key.get_Parameter(BuiltInParameter.Y_JUSTIFICATION).Set(just);
                         }
 
+
                         t2.Commit();
                     }
                 }
             }
-
-            TaskDialog.Show("Inform", $"You have {_newBeamsIds.Count} beam");
+            MessageBox.Show(string.Concat("You have created ", _newBeamsIds.Count,
+                    " Beams!"), SonnyBIMConstraint.MessageBoxCaption, MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            //TaskDialog.Show("Inform", $"You have {_newBeamsIds.Count} beam");
         }
     }
 }

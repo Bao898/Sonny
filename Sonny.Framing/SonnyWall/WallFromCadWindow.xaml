@@ -1,0 +1,153 @@
+﻿<Window x:Name="MainWindow" x:Class="SonnyBIM.WallFromCadWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            xmlns:SonnyBIM="clr-namespace:SonnyBIM"
+            d:DataContext="{d:DesignInstance Type=SonnyBIM:WallFromCADViewModel}"
+            Title="{Binding TitleCaption}"
+
+            Height="550" Width="500"
+            WindowStartupLocation="CenterScreen"
+            KeyDown="MainWindow_KeyDown"
+            Background="White"
+            ResizeMode="CanResize"
+            >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- <ResourceDictionary.MergedDictionaries> -->
+            <!--     <ResourceDictionary Source="/SonnyBIMResources;component/WPFResource/SonnyBIMResource.xaml" /> -->
+            <!--     ~1~<ResourceDictionary Source="/SonnyBIM;component/02.Resources/Languages/OnlineLicense/UserLicenseWindow.vi.xaml" />@1@ -->
+            <!-- </ResourceDictionary.MergedDictionaries> -->
+        </ResourceDictionary>
+    </Window.Resources>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" x:Name="MainGrid">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Scrollable Content Area -->
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="0,0,5,0">
+
+                        <!-- GROUP 1: LAYER SELECTION -->
+                        <GroupBox Header="Layer Selection" Margin="0,0,0,10">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" MinWidth="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding SelectedLayerHint}" VerticalAlignment="Center"/>
+                                <ComboBox Grid.Column="1" Margin="5,0,0,0"
+                                          ItemsSource="{Binding AllLayers}"
+                                          SelectedItem="{Binding SelectedLayer}"
+                                          IsEditable="False"
+                                          ToolTip="Layer of hatch Floor" />
+                            </Grid>
+                        </GroupBox>
+
+                        <!-- GROUP 2: WALL TYPES -->
+                        <GroupBox Header="Wall Types" Margin="0,0,0,10">
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" MinWidth="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Wall Type 1 -->
+                                <TextBlock Grid.Row="0" Text="{Binding SelectedWallType1Hint}" VerticalAlignment="Center" Margin="0,5"/>
+                                <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,5,0,5"
+                                          ItemsSource="{Binding AllWallType}"
+                                          SelectedItem="{Binding SelectedWallType1}"
+                                          DisplayMemberPath="Name"
+                                          IsEditable="False"/>
+
+                                <!-- Wall Type 2 -->
+                                <TextBlock Grid.Row="1" Text="{Binding SelectedWallType2Hint}" VerticalAlignment="Center" Margin="0,5"/>
+                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="5,5,0,5"
+                                          ItemsSource="{Binding AllWallType}"
+                                          SelectedItem="{Binding SelectedWallType2}"
+                                          DisplayMemberPath="Name"
+                                          IsEditable="False"/>
+
+                                <!-- Wall Type 3 -->
+                                <TextBlock Grid.Row="2" Text="{Binding SelectedWallType3Hint}" VerticalAlignment="Center" Margin="0,5"/>
+                                <ComboBox Grid.Row="2" Grid.Column="1" Margin="5,5,0,5"
+                                          ItemsSource="{Binding AllWallType}"
+                                          SelectedItem="{Binding SelectedWallType3}"
+                                          DisplayMemberPath="Name"
+                                          IsEditable="False"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <!-- GROUP 3: CONSTRAINTS -->
+                        <GroupBox Header="Constraints" Margin="0,0,0,10">
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" MinWidth="75"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="75"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Base Level & Offset -->
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding BaseLevelHint}" VerticalAlignment="Center" Margin="0,5"/>
+                                <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,5,10,5"
+                                          ItemsSource="{Binding AllLevel}"
+                                          SelectedItem="{Binding BaseLevel}"
+                                          DisplayMemberPath="Name"
+                                          IsEditable="False"/>
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding BaseOffsetHint}" VerticalAlignment="Center" Margin="0,5"/>
+                                <TextBox Grid.Row="0" Grid.Column="3" Margin="5,5,0,5"
+                                         ToolTip="{Binding MillimeterHint}"
+                                         Text="{Binding BaseOffset}"/>
+                                <!-- Top Level & Offset -->
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding TopLevelHint}" VerticalAlignment="Center" Margin="0,5" />
+                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="5,5,10,5"
+                                          ItemsSource="{Binding AllLevel}"
+                                          SelectedItem="{Binding TopLevel}"
+                                          DisplayMemberPath="Name"
+                                          IsEditable="False"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding TopOffsetHint}" VerticalAlignment="Center" Margin="0,5" />
+                                <TextBox Grid.Row="1" Grid.Column="3" Margin="5,5,0,5"
+                                         ToolTip="{Binding MillimeterHint}"
+                                         Text="{Binding TopOffset}"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <!-- Additional Options -->
+                        <StackPanel Orientation="Horizontal" Margin="5,5,0,15">
+                            <CheckBox Content="{Binding StructuralWallCap}" Margin="0,0,20,0"
+                                      IsChecked="{Binding IsCreateWallStructural}" />
+                        </StackPanel>
+
+
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Footer Buttons -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+                    <Button Content="{Binding OkCap}" Width="100" Height="30" Click="btnOk_Click" Margin="0,0,10,0" />
+                    <Button Content="{Binding CancelCap}" Width="100" Height="30" Click="btnCancel_Click" IsCancel="True" />
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+</Window>
