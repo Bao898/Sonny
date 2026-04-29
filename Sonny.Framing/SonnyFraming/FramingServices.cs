@@ -19,6 +19,7 @@ namespace SonnyBIM
     public class FramingServices
     {
         private readonly Document _doc;
+        private readonly UIDocument _uiDoc;
         private readonly FramingFromCADViewModel _viewModel;
         private readonly IProgressReporter _reporter;
 
@@ -34,6 +35,7 @@ namespace SonnyBIM
         {
             _viewModel = viewModel;
             _doc = viewModel.Doc;
+            _uiDoc = viewModel.UiDoc;
             _reporter = reporter;
         }
 
@@ -284,6 +286,7 @@ namespace SonnyBIM
                     }
                 }
             }
+            _reporter?.Close();
             MessageBox.Show(string.Concat("You have created ", _newBeamsIds.Count,
                     " Beams!"), SonnyBIMConstraint.MessageBoxCaption, MessageBoxButtons.OK,
                 MessageBoxIcon.Information);

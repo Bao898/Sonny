@@ -9,7 +9,7 @@ using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 namespace SonnyBIM
 {
     [Transaction(TransactionMode.Manual)]
-    public class FramingFromCadCmd : IExternalCommand
+    public class FloorFromCadCmd : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -30,24 +30,24 @@ namespace SonnyBIM
                 );
                 using (TransactionGroup txG = new TransactionGroup(doc)) {
                     text = BindingUtils.ChangeLanguage(languageCode,
-                        "Dựng Dầm từ AutoCAD",
-                        "Model Framing from AutoCAD");
+                        "Dựng Sàn từ AutoCAD",
+                        "Model Floor from AutoCAD");
                     txG.Start(text);
 
-                    FramingFromCADViewModel viewModel = new FramingFromCADViewModel(uidoc);
+                    FloorFromCADViewModel viewModel = new FloorFromCADViewModel(uidoc);
                     if (viewModel.SelectedCadLink == null) { return Result.Cancelled; }
 
-                    FramingFromCadWindow window = new FramingFromCadWindow(viewModel);
+                    FloorFromCadWindow window = new FloorFromCadWindow(viewModel);
                     if (window.ShowDialog() == false) { return Result.Cancelled; }
 
                     // 1. Khởi tạo Người báo cáo tiến độ (Sử dụng ProgressView có sẵn của hệ thống)
-                    var reporter = new FramingProgressReporter();
-                    string title = BindingUtils.ChangeLanguage(languageCode, "Dựng Dầm từ AutoCAD", "Model Framing from AutoCAD");
+                    var reporter = new FloorProgressReporter();
+                    string title = BindingUtils.ChangeLanguage(languageCode, "Dựng Sàn từ AutoCAD", "Model Floor from AutoCAD");
                     reporter.Show(title);
 
                     try {
                         // 2. Khởi tạo Service và truyền reporter vào
-                        var service = new FramingServices(viewModel, reporter);
+                        var service = new FloorServices(viewModel, reporter);
 
                         // 3. Thực hiện thuật toán
                         service.Execute();

@@ -3,7 +3,6 @@
 
 using System.Windows.Media.Imaging;
 using Autodesk.Revit.DB;
-using Sonny.Framing.SonnyStr;
 
 namespace SonnyBIM
 {

@@ -163,6 +163,109 @@ namespace SonnyBIM
         {
             return (c as Line)?.Direction.Normalize();
         }
+
+        /// <summary>
+        /// Trả về null khi gặp lỗi
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="cv"></param>
+        /// <returns></returns>
+        public static ModelLine CreateModelLine(Document doc, Curve cv)
+        {
+            if (cv.Length < SonnyBIMConstraint.Tolerance) { return null; }
+
+            XYZ v = cv.GetEndPoint(0) - cv.GetEndPoint(1);
+            double dxy = Math.Abs(v.X) + Math.Abs(v.Y);
+            XYZ w = (dxy > 0.0001) ? XYZ.BasisZ : XYZ.BasisY;
+            XYZ normalize = v.CrossProduct(w).Normalize();
+            try {
+                Plane plane = Plane.CreateByNormalAndOrigin(normalize, cv.GetEndPoint(1));
+                SketchPlane sketchPlane = SketchPlane.Create(doc, plane);
+                return doc.Create.NewModelCurve(cv, sketchPlane) as ModelLine;
+            }
+            catch (Exception) {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra 2 Curve có đang cắt nhau ?
+        /// </summary>
+        /// <param name="c1"></param>
+        /// <param name="c2"></param>
+        /// <returns></returns>
+        public static bool IsIntersection(Curve? c1, Curve? c2)
+        {
+            IntersectionResultArray results;
+            SetComparisonResult result = c1.Intersect(c2, out results);
+
+            // không giao nhau
+            if (result != SetComparisonResult.Overlap || results == null || results.Size != 1) {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Kiểm tra 2 curve có đang cắt nhau thông qua 2 đường Line được tạo ra từ 2 Curve đó
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="c1"></param>
+        /// <param name="c2"></param>
+        /// <returns></returns>
+        public static bool IsIntersection(Document doc, Curve c1, Curve c2)
+        {
+            bool result = false;
+            ModelLine curve1 = CreateModelLine(doc, c1);
+            ModelLine curve2 = CreateModelLine(doc, c2);
+            if (curve1 == null || curve2 == null) {
+                return false;
+            }
+
+            result = IsIntersection(curve1.GeometryCurve, curve2.GeometryCurve);
+            return result;
+        }
+
+        /// <summary>
+        /// Lấy về tập hợp gồm tập hợp những đường Curve khép kín, mỗi tập hợp ít nhất 3 curve
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="curves"></param>
+        /// <returns></returns>
+        public static List<List<Curve>> GetCurveLoops(Document doc, List<Curve> curves)
+        {
+            List<List<Curve>> result = new List<List<Curve>>();
+
+            while (curves.Count > 2) {
+                List<Curve> curvesContinue = new List<Curve>();
+                Curve curveCheck = curves[0];
+                curves = curves.Except(new[] { curveCheck }).ToList();
+
+                curvesContinue.Add(curveCheck);
+                foreach (Curve c in curves) {
+                    if (IsIntersection(doc, curveCheck, c)) {
+                        curvesContinue.Add(c);
+                        curveCheck = c;
+                        curves = curves.Except(new[] { c }).ToList();
+                    }
+                }
+
+                if (curvesContinue.Count > 2) {
+                    result.Add(curvesContinue);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Lấy về trung điểm của đường thẳng
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        public static XYZ GetMiddlePoint(this Line line)
+        {
+            return line.GetEndPoint(0).Add(line.GetEndPoint(1)).Divide(2);
+        }
     }
 }
 

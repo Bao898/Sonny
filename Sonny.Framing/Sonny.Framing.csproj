@@ -95,6 +95,7 @@
       <Compile Remove="SonnyStr\FramingFromCadProcess.xaml.cs" />
       <Compile Remove="WPFResource\**" />
       <Compile Remove="License\**" />
+      <Compile Remove="Other\Setting.cs" />
     </ItemGroup>
 
     <ItemGroup>

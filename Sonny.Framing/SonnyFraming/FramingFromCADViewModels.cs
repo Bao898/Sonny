@@ -26,26 +26,14 @@ namespace SonnyBIM
         #endregion private variable
 
         #region public property
-        [Obfuscation]
-        public List<string> AllLayers {get; set;} = new List<string>();
-
-        [Obfuscation]
-        public double ZOffset {get; set;}
-        [Obfuscation]
-        public string AllSections {get; set;}
-        [Obfuscation]
-        public bool IsCreateForSingleLine {get; set;}
-
-        [Obfuscation]
-        public List<Level> AllLevel {get; set;} = new List<Level>();
-        [Obfuscation]
-        public Level ReferenceLevel {get; set;}
-
-        [Obfuscation]
-        public string SelectedLayer {get; set;}
-
-        [Obfuscation]
-        public List<Family> AllFamiliesFraming {get; set;} = new List<Family>();
+        [Obfuscation] public List<string> AllLayers {get; set;} = new List<string>();
+        [Obfuscation] public double ZOffset {get; set;}
+        [Obfuscation] public string AllSections {get; set;}
+        [Obfuscation] public bool IsCreateForSingleLine {get; set;}
+        [Obfuscation] public List<Level> AllLevel {get; set;} = new List<Level>();
+        [Obfuscation] public Level ReferenceLevel {get; set;}
+        [Obfuscation] public string SelectedLayer {get; set;}
+        [Obfuscation] public List<Family> AllFamiliesFraming {get; set;} = new List<Family>();
 
         [Obfuscation]
         public Family SelectedFamilyFraming
@@ -111,37 +99,22 @@ namespace SonnyBIM
                 OnPropertyChanged();
             }
         }
-        [Obfuscation]
-        public string SelectedLayerHint {get; set;}
+        [Obfuscation] public string SelectedLayerHint {get; set;}
 
-        [Obfuscation]
-        public string SelectedFamilyFramingHint {get; set;}
-        [Obfuscation]
-        public string WidthParameterHint { get; set; }
-        [Obfuscation]
-        public string HeightParameterHint { get; set; }
-        [Obfuscation]
-        public string ReferenceLevelHint { get; set; }
-        [Obfuscation]
-        public string ZOffsetHint { get; set; }
-        [Obfuscation]
-        public string ZOffsetToolTip { get; set; }
-        [Obfuscation]
-        public string AllSectionsHint { get; set; }
-        [Obfuscation]
-        public string AllSectionsToolTip { get; set; }
-        [Obfuscation]
-        public string IsCreateForSingleLineCap { get; set; }
-        [Obfuscation]
-        public string IsCreateForSingleLineToolTip { get; set; }
-        [Obfuscation]
-        public string IsDisallowJoinCap { get; set; }
-        [Obfuscation]
-        public string IsDisallowJoinToolTip { get; set; }
-        [Obfuscation]
-        public bool IsDisallowJoin { get; set; }
-
-        public UIDocument? UiDoc { get; set; }
+        [Obfuscation] public string SelectedFamilyFramingHint {get; set;}
+        [Obfuscation] public string WidthParameterHint { get; set; }
+        [Obfuscation] public string HeightParameterHint { get; set; }
+        [Obfuscation] public string ReferenceLevelHint { get; set; }
+        [Obfuscation] public string ZOffsetHint { get; set; }
+        [Obfuscation] public string ZOffsetToolTip { get; set; }
+        [Obfuscation] public string AllSectionsHint { get; set; }
+        [Obfuscation] public string AllSectionsToolTip { get; set; }
+        [Obfuscation] public string IsCreateForSingleLineCap { get; set; }
+        [Obfuscation] public string IsCreateForSingleLineToolTip { get; set; }
+        [Obfuscation] public string IsDisallowJoinCap { get; set; }
+        [Obfuscation] public string IsDisallowJoinToolTip { get; set; }
+        [Obfuscation] public bool IsDisallowJoin { get; set; }
+        [Obfuscation] public UIDocument? UiDoc { get; set; }
 
         #endregion public property
 

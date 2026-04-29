@@ -5,15 +5,15 @@ using System.Reflection;
 
 namespace SonnyBIM
 {
-    public class SettingCreateFraming
+    public class SettingCreateFoundation
     {
-        public SettingCreateFraming() { }
+        public SettingCreateFoundation() { }
 
         /// <summary>
         /// Contructor with Name of file setting
         /// </summary>
         /// <param name="nameOfFileSetting">Name of file, not incule file extension, should with format xxxSetting</param>
-        public SettingCreateFraming(string nameOfFileSetting)
+        public SettingCreateFoundation(string nameOfFileSetting)
         {
             DefautSettingPath =
                 string.Concat(SonnyBIMConstraint.SettingFolder,
@@ -22,13 +22,7 @@ namespace SonnyBIM
 
         [Obfuscation] public string DefautSettingPath { get; set; }
         [Obfuscation] public string SelectedLayer { get; set; }
-        [Obfuscation] public long SelectedFamilyFraming { get; set; }
-        [Obfuscation] public string WidthParameter { get; set; }
-        [Obfuscation] public string HeightParameter { get; set; }
-        [Obfuscation] public long ReferenceLevel { get; set; }
-        [Obfuscation] public double ZOffset { get; set; }
-        [Obfuscation] public string AllSections { get; set; }
-        [Obfuscation] public bool IsCreateForSingleLine { get; set; }
+        [Obfuscation] public long SelectedFloor { get; set; }
+        [Obfuscation] public long SelectedLevel { get; set; }
     }
 }
-

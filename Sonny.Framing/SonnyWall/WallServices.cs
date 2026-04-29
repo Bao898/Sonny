@@ -344,6 +344,7 @@ public class WallServices
 
                 _newWallIds = _newWallIds.Where(id => id != null).ToList();
 
+                _reporter?.Close();
                 MessageBox.Show(string.Concat("You have created ", _newWallIds.Count,
                     " Walls!"), SonnyBIMConstraint.MessageBoxCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

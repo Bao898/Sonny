@@ -71,6 +71,25 @@ namespace SonnyBIM
             }
             return String.Empty;
         }
+
+        /// <summary>
+        /// Lấy giá trị double, bõ phần đơn vị. Ví dụ: 2.4 m3 -> 2.4
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static double GetDouble(string str)
+        {
+            char seperator = Convert.ToChar(" ");
+            string[] strings = str.Split(seperator);
+            double value = Double.MinValue;
+            if (strings.Length > 1) {
+                value = Convert.ToDouble(strings[0]);
+            }
+            else {
+                value = Convert.ToDouble(str);
+            }
+            return value;
+        }
     }
 }
 

@@ -2,7 +2,7 @@
     <AddIn Type="Application">
         <Name>Sonny.Framing</Name>
         <Assembly>Sonny.Framing\Sonny.Framing.dll</Assembly>
-        <AddInId>974AD397-F13A-4E93-8F85-E0A1E46E9257</AddInId>
+        <AddInId>E68995CB-4DD6-4E12-8100-C789AADCE18A</AddInId>
         <FullClassName>Sonny.Framing.Application</FullClassName>
         <VendorId>Development</VendorId>
         <VendorDescription></VendorDescription>

@@ -61,6 +61,15 @@ public class Application : ExternalApplication
             panel.AddPushButton<WallFromCadCmd>("Wall from CAD")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+            panel.AddPushButton<FloorFromCadCmd>("Floor from CAD")
+                .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
+                .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+            panel.AddPushButton<FoundationFromCadCmd>("Foundation from CAD")
+                .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
+                .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+            panel.AddPushButton<PileFromCadCmd>("Pile from CAD")
+                .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
+                .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
 
     }
 

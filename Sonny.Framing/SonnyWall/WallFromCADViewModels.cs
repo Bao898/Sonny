@@ -26,20 +26,13 @@ namespace SonnyBIM
         #endregion private variable
 
         #region public property
-        [Obfuscation]
-        public List<string> AllLayers {get; set;} = new List<string>();
-        [Obfuscation]
-        public string SelectedLayer { get; set; }
-        [Obfuscation]
-        public List<WallType> AllWallType { get; set; } = new List<WallType> ();
-        [Obfuscation]
-        public List<Level> AllLevel {get; set;} = new List<Level>();
-        [Obfuscation]
-        public WallType SelectedWallType1 { get; set; }
-        [Obfuscation]
-        public WallType SelectedWallType2 { get; set; }
-        [Obfuscation]
-        public WallType SelectedWallType3 { get; set; }
+        [Obfuscation] public List<string> AllLayers {get; set;} = new List<string>();
+        [Obfuscation] public string SelectedLayer { get; set; }
+        [Obfuscation] public List<WallType> AllWallType { get; set; } = new List<WallType> ();
+        [Obfuscation] public List<Level> AllLevel {get; set;} = new List<Level>();
+        [Obfuscation] public WallType SelectedWallType1 { get; set; }
+        [Obfuscation] public WallType SelectedWallType2 { get; set; }
+        [Obfuscation] public WallType SelectedWallType3 { get; set; }
         [Obfuscation]
         public bool ForThicknessType1 {
             get => _forThicknessType1;
@@ -49,10 +42,8 @@ namespace SonnyBIM
                 OnPropertyChanged("IsEnabledThicknessType1");
             }
         }
-        [Obfuscation]
-        public string AllThicknessType1 { get; set; }
-        [Obfuscation]
-        public bool IsEnabledThicknessType1 { get; set; }
+        [Obfuscation] public string AllThicknessType1 { get; set; }
+        [Obfuscation] public bool IsEnabledThicknessType1 { get; set; }
 
         [Obfuscation]
         public bool ForThicknessType2 {
@@ -63,10 +54,8 @@ namespace SonnyBIM
                 OnPropertyChanged("IsEnabledThicknessType1");
             }
         }
-        [Obfuscation]
-        public string AllThicknessType2 { get; set; }
-        [Obfuscation]
-        public bool IsEnabledThicknessType2 { get; set; }
+        [Obfuscation] public string AllThicknessType2 { get; set; }
+        [Obfuscation] public bool IsEnabledThicknessType2 { get; set; }
 
         [Obfuscation]
         public bool ForThicknessType3 {
@@ -77,10 +66,8 @@ namespace SonnyBIM
                 OnPropertyChanged("IsEnabledThicknessType1");
             }
         }
-        [Obfuscation]
-        public string AllThicknessType3 { get; set; }
-        [Obfuscation]
-        public bool IsEnabledThicknessType3 { get; set; }
+        [Obfuscation] public string AllThicknessType3 { get; set; }
+        [Obfuscation] public bool IsEnabledThicknessType3 { get; set; }
 
         [Obfuscation]
         public LanguageData SelectedLanguage {
@@ -96,32 +83,19 @@ namespace SonnyBIM
                 OnPropertyChanged();
             }
         }
-        [Obfuscation]
-        public Level BaseLevel { get; set; }
-        [Obfuscation]
-        public Level TopLevel { get; set; }
-        [Obfuscation]
-        public double BaseOffset { get; set; }
-        [Obfuscation]
-        public double TopOffset { get; set; }
-        [Obfuscation]
-        public bool IsCreateWallStructural { get; set; }
-        [Obfuscation]
-        public string SelectedWallType1Hint {get; set;}
-        [Obfuscation]
-        public string SelectedWallType2Hint {get; set;}
-        [Obfuscation]
-        public string SelectedWallType3Hint {get; set;}
-        [Obfuscation]
-        public string BaseLevelHint {get; set;}
-        [Obfuscation]
-        public string TopLevelHint {get; set;}
-        [Obfuscation]
-        public string BaseOffsetHint {get; set;}
-        [Obfuscation]
-        public string TopOffsetHint {get; set;}
-        [Obfuscation]
-        public string StructuralWallCap {get; set;}
+        [Obfuscation] public Level BaseLevel { get; set; }
+        [Obfuscation] public Level TopLevel { get; set; }
+        [Obfuscation] public double BaseOffset { get; set; }
+        [Obfuscation] public double TopOffset { get; set; }
+        [Obfuscation] public bool IsCreateWallStructural { get; set; }
+        [Obfuscation] public string SelectedWallType1Hint {get; set;}
+        [Obfuscation] public string SelectedWallType2Hint {get; set;}
+        [Obfuscation] public string SelectedWallType3Hint {get; set;}
+        [Obfuscation] public string BaseLevelHint {get; set;}
+        [Obfuscation] public string TopLevelHint {get; set;}
+        [Obfuscation] public string BaseOffsetHint {get; set;}
+        [Obfuscation] public string TopOffsetHint {get; set;}
+        [Obfuscation] public string StructuralWallCap {get; set;}
 
         #endregion public property
 
