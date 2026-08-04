@@ -1,0 +1,184 @@
+﻿<Window x:Name="MainWindow" x:Class="SonnyBIM.AdjustStrBeamWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SonnyBIM"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:AdjustStrBeamViewModel}"
+        Title="Adjust Structural Beam"
+        Height="450"
+        Width="450"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="White"
+        KeyDown="MainWindow_KeyDown">
+    <!-- CHANGED: SharedSizeScope — cột label = label dài nhất; khe 10 tới cột control. -->
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Gap input -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Beam -> Wall clearance(mm)"
+                       VerticalAlignment="Center"
+                       Margin="10,0,10,0"/>
+
+            <TextBox Grid.Column="1"
+                     Text="{Binding BeamGapWallMm, UpdateSourceTrigger=PropertyChanged}"
+                     Height="28"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Stretch"
+                     Padding="6,0"
+                     Margin="0,0,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Beam -> Column clearance(mm)"
+                       VerticalAlignment="Center"
+                       Margin="10,20,10,0"/>
+
+            <TextBox Grid.Column="1"
+                     Text="{Binding BeamGapColumnMm, UpdateSourceTrigger=PropertyChanged}"
+                     Height="28"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Stretch"
+                     Padding="6,0"
+                     Margin="0,20,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Beam -> Beam inline gap (mm)"
+                       VerticalAlignment="Center"
+                       Margin="10,20,10,0"/>
+
+            <TextBox Grid.Column="1"
+                     Text="{Binding BeamBeamGapColumnMm, UpdateSourceTrigger=PropertyChanged}"
+                     Height="28"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Stretch"
+                     Padding="6,0"
+                     Margin="0,20,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Beam -> Beam perpendicular gap (mm)"
+                       VerticalAlignment="Center"
+                       Margin="10,20,10,0"/>
+
+            <TextBox Grid.Column="1"
+                     Text="{Binding BeamBeamPerpendicularGapMm, UpdateSourceTrigger=PropertyChanged}"
+                     Height="28"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Stretch"
+                     Padding="6,0"
+                     Margin="0,20,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Beam corner at pillar"
+                       VerticalAlignment="Center"
+                       Margin="10,20,10,0"/>
+
+            <ComboBox Grid.Column="1"
+                      Height="28"
+                      VerticalContentAlignment="Center"
+                      HorizontalAlignment="Stretch"
+                      Padding="6,0"
+                      Margin="0,20,10,0"
+                      SelectedIndex="0">
+                <ComboBoxItem Content="Default"/>
+            </ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Corner / T-shape at pillar : extend to beam body"
+                       VerticalAlignment="Center"
+                       Margin="10,20,10,0"/>
+
+            <CheckBox Grid.Column="1"
+                      IsChecked="{Binding CutWidthLedgeAtPillar}"
+                      Height="28"
+                      VerticalContentAlignment="Center"
+                      HorizontalAlignment="Left"
+                      Padding="6,0"
+                      Margin="0,20,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Corner at wall : extend to beam body"
+                       VerticalAlignment="Center"
+                       Margin="10,20,10,0"/>
+
+            <CheckBox Grid.Column="1"
+                      IsChecked="True"
+                      Height="28"
+                      VerticalContentAlignment="Center"
+                      HorizontalAlignment="Left"
+                      Padding="6,0"
+                      Margin="0,20,10,0"/>
+        </Grid>
+
+        <!-- OK -->
+        <StackPanel Grid.Row="7"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button Content="Adjust"
+                    Width="100"
+                    Height="30"
+                    IsDefault="True"
+                    Click="btnOk_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

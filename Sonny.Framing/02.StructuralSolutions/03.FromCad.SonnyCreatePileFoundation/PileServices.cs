@@ -59,18 +59,20 @@ namespace SonnyBIM
                 }
             }
 
-            _trans = new Transaction(_doc);
-            using (_trans) {
+            //_trans = new Transaction(_doc);
+            using (_transG =  new TransactionGroup(_doc, "Create Piles")) {
+                _transG.Start();
                 int value = 0;
-                _trans.Start("Run");
-                FailureHandlingOptions failOpt = _trans.GetFailureHandlingOptions();
-                failOpt.SetFailuresPreprocessor(new WarningDeleteWarning());
-                _trans.SetFailureHandlingOptions(failOpt);
 
                 foreach (InforPileModelFromCad inforPileModelFromCad in inforPileModelFromCads) {
-                    if (_trans.HasStarted()) {
-                        value++;
-                        _reporter.Update(value, inforPileModelFromCads.Count);
+                    value++;
+                    _reporter.Update(value, inforPileModelFromCads.Count);
+
+                    using (Transaction trans = new Transaction(_doc, "Create Single Pile")) {
+                        trans.Start();
+                        FailureHandlingOptions failOpt = trans.GetFailureHandlingOptions();
+                        failOpt.SetFailuresPreprocessor(new WarningDeleteWarning());
+                        trans.SetFailureHandlingOptions(failOpt);
 
                         try {
                             FamilySymbol familySymbol = null;
@@ -94,15 +96,15 @@ namespace SonnyBIM
                             _newElementIds.Add(instance.Id);
                         }
                         catch (Exception) { }
+                        trans.Commit();
+                        _uiDoc.RefreshActiveView();
                     }
-                    else {
-                        break;
-                    }
+
                 }
 
-                if (_trans.HasStarted()) {
+                if (_transG.HasStarted()) {
                     _reporter.Close();
-                    _trans.Commit();
+                    _transG.Commit();
 
                     _newElementIds = _newElementIds.Where(id => id != null).ToList();
                     MessageBox.Show(string.Concat("You have created ",_newElementIds.Count," Pile Foundation!"),SonnyBIMConstraint.MessageBoxCaption,

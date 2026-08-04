@@ -24,13 +24,10 @@ namespace SonnyBIM
             #region
 
             try {
-                string text = BindingUtils.ChangeLanguage(languageCode,
-                    "Bạn nên lưu file Revit để đề phòng có thể gặp phải lỗi làm văng file Revit!",
-                    "You should save the Revit file in case you may encounter errors making Revit out!"
-                );
+
                 using (TransactionGroup txG = new TransactionGroup(doc)) {
-                    text = BindingUtils.ChangeLanguage(languageCode,
-                        "Dựng Sàn từ AutoCAD",
+                    string text = BindingUtils.ChangeLanguage(languageCode,
+                        "Dựng Móng từ AutoCAD",
                         "Model Pile from AutoCAD");
                     txG.Start(text);
 
@@ -42,7 +39,7 @@ namespace SonnyBIM
 
                     // 1. Khởi tạo Người báo cáo tiến độ (Sử dụng ProgressView có sẵn của hệ thống)
                     var reporter = new PileProgressReporter();
-                    string title = BindingUtils.ChangeLanguage(languageCode, "Dựng Sàn từ AutoCAD", "Model Pile from AutoCAD");
+                    string title = BindingUtils.ChangeLanguage(languageCode, "Dựng Móng từ AutoCAD", "Model Pile from AutoCAD");
                     reporter.Show(title);
 
                     try {

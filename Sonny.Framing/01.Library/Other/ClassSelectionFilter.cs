@@ -33,5 +33,33 @@ namespace SonnyBIM
             return false;
         }
     }
+
+
+    /// <summary>
+    /// Allows picking Structural Framing and Structural Column and Walls.
+    /// </summary>
+    public class BeamWallSelectionFilter : ISelectionFilter
+    {
+        public bool AllowElement(Element elem)
+        {
+            if (elem == null) return false;
+
+            if (elem is FamilyInstance fi && fi.Category != null)
+            {
+                int cat = fi.Category.Id.IntegerValue;
+                if (cat == (int)BuiltInCategory.OST_StructuralFraming) return true;
+                if (cat == (int)BuiltInCategory.OST_StructuralColumns) return true;
+            }
+
+            if (elem is Wall) return true;
+
+            return false;
+        }
+        public bool AllowReference(Reference reference, XYZ position)
+        {
+            // PickObjects(ObjectType.Element) only needs AllowElement
+            return false;
+        }
+    }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
+using Nice3point.Revit.Extensions.UI;
 using Nice3point.Revit.Toolkit.External;
 using SonnyBIM;
 
@@ -53,21 +54,24 @@ public class Application : ExternalApplication
 
     private void CreateRibbon()
     {
-        var panel = Application.CreatePanel("Model from CAD", "Sonny");
+        var panel = Application.CreatePanel("Model From Cad", "Sonny");
 
-            panel.AddPushButton<FramingFromCadCmd>("Beam from CAD")
+            panel.AddPushButton<FramingFromCadCmd>("Beam From Cad")
+                .SetImage("/Sonny.Framing;component/Resources/Icons/BeamIcon16.png")
+                .SetLargeImage("/Sonny.Framing;component/Resources/Icons/BeamIcon32.png");
+            panel.AddPushButton<WallFromCadCmd>("Wall From Cad")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
-            panel.AddPushButton<WallFromCadCmd>("Wall from CAD")
+            panel.AddPushButton<FloorFromCadCmd>("Floor From Cad")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
-            panel.AddPushButton<FloorFromCadCmd>("Floor from CAD")
+            panel.AddPushButton<FoundationFromCadCmd>("Foundation From Cad")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
-            panel.AddPushButton<FoundationFromCadCmd>("Foundation from CAD")
+            panel.AddPushButton<PileFromCadCmd>("Pile From Cad")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
-            panel.AddPushButton<PileFromCadCmd>("Pile from CAD")
+            panel.AddPushButton<AdjustStrBeamCmd>("Adjust Structural Beam")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
 
