@@ -1,0 +1,126 @@
+﻿<Window x:Name="MainWindow" x:Class="SonnyBIM.AutoJoinWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:Sonnybim="clr-namespace:SonnyBIM"
+        d:DataContext="{d:DesignInstance Type=Sonnybim:AutoJoinViewModel}"
+        Title="{Binding TitleCaption}"
+        Height="650" Width="680"
+        KeyDown="MainWindow_KeyDown"
+        WindowStartupLocation="CenterScreen"
+        Background="White"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- <ResourceDictionary Source="/SonnyBIMResources;component/WPFResource/SonnyBIMResource.xaml" /> -->
+                <!--<ResourceDictionary Source="/SonnyBIM;component/02.Resources/Languages/OnlineLicense/UserLicenseWindow.vi.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Main Content -->
+    <Grid x:Name="MainGrid">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="0,0,5,0">
+
+                    <!-- GROUP 2: JOIN RULES -->
+                    <!-- Rules DataGrid -->
+                    <DataGrid Grid.Row="1"
+                              ItemsSource="{Binding AllRules}"
+                              Sonnybim:CustomDataGrid.SelectedItems="{Binding SelectedRules, Mode=TwoWay}"
+                              MinHeight="320"
+                              IsEnabled="{Binding IsEnabledScope}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              GridLinesVisibility="All"
+                              HeadersVisibility="Column">
+
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="New Rule"
+                                          Click="NewRule_Click"
+                                          Icon="{materialDesign:PackIcon Kind=NewBox}"/>
+                                <MenuItem Header="Delete selected Rules"
+                                          Click="DeleteRules_Click"
+                                          Icon="{materialDesign:PackIcon Kind=BeakerRemove}"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+
+
+                        <DataGrid.Columns>
+                            <!-- Cột 1: Priority Category -->
+                            <DataGridTemplateColumn Header="Priority Category" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox
+                                            ItemsSource="{Binding DataContext.AllCategoryPriority,
+                                              RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            SelectedItem="{Binding PriorityCategory,
+                                              UpdateSourceTrigger=PropertyChanged}"
+                                            IsEditable="False"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- Cột 2: Join With Category -->
+                            <DataGridTemplateColumn Header="Join With Category" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox
+                                            ItemsSource="{Binding DataContext.AllCutCategory,
+                                              RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            SelectedItem="{Binding JoinWithCategory,
+                                              UpdateSourceTrigger=PropertyChanged}"
+                                            IsEditable="False"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- Cột 3: Reverse -->
+                            <DataGridTemplateColumn Header="Reverse" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            IsChecked="{Binding IsReverse,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Footer Buttons (giống Sonny) -->
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,15,0,0">
+                <Button Content="{Binding OkCap}"
+                        Width="100" Height="30"
+                        Click="btnOk_Click"
+                        Margin="0,0,10,0"/>
+                <Button Content="{Binding CancelCap}"
+                        Width="100" Height="30"
+                        Click="btnCancel_Click"
+                        Margin="0,0,10,0"/>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
+

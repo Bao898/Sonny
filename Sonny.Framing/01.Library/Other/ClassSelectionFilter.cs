@@ -46,9 +46,15 @@ namespace SonnyBIM
 
             if (elem is FamilyInstance fi && fi.Category != null)
             {
+#if ALB_R23 || ALB_R22 || ALB_R21
                 int cat = fi.Category.Id.IntegerValue;
                 if (cat == (int)BuiltInCategory.OST_StructuralFraming) return true;
                 if (cat == (int)BuiltInCategory.OST_StructuralColumns) return true;
+#else
+                long cat = fi.Category.Id.Value;
+                if (cat == (long)BuiltInCategory.OST_StructuralFraming) return true;
+                if (cat == (long)BuiltInCategory.OST_StructuralColumns) return true;
+#endif
             }
 
             if (elem is Wall) return true;

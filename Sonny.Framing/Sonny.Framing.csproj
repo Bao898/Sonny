@@ -67,6 +67,7 @@
 
         <!-- MVVM -->
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
+        <PackageReference Include="Nuke.Build" Version="9.0.4" />
     </ItemGroup>
 
     <ItemGroup>

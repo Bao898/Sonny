@@ -71,6 +71,15 @@ public class Application : ExternalApplication
             panel.AddPushButton<PileFromCadCmd>("Pile From Cad")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+
+            panel.AddPushButton<PileCoordinateCmd>("Pile Coordinates")
+                .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
+                .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+
+            panel.AddPushButton<AutoJoinCmd>("Auto Join")
+                .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
+                .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");
+
             panel.AddPushButton<AdjustStrBeamCmd>("Adjust Structural Beam")
                 .SetImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon16.png")
                 .SetLargeImage("/Sonny.Framing;component/Resources/Icons/RibbonIcon32.png");

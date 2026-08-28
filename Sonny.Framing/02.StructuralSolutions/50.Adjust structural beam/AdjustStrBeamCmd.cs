@@ -34,7 +34,11 @@ namespace SonnyBIM
 
                 else if (element is FamilyInstance fi && fi.Category != null)
                 {
+#if ALB_R23 || ALB_R22 || ALB_R21
                     int cat = fi.Category.Id.IntegerValue;
+#else
+                    long cat = fi.Category.Id.Value;
+#endif
                     if (cat == (int)BuiltInCategory.OST_StructuralFraming)
                         beams.Add(fi);
                     else if (cat == (int)BuiltInCategory.OST_StructuralColumns)

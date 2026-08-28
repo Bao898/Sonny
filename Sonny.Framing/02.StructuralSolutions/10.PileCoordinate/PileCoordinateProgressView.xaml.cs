@@ -20,11 +20,24 @@ namespace SonnyBIM
         }
 
         public void UpdateProgress(int current, int total) =>
-            Dispatcher.Invoke(() =>
+            Dispatcher.CurrentDispatcher.Invoke(() =>
             {
+                if (total <= 0)
+                {
+                    ProgressBar.Maximum = 100;
+                    ProgressBar.Value = 0;
+                    PercentText.Text = "0%";
+                    return;
+                }
                 ProgressBar.Maximum = total;
                 ProgressBar.Value = current;
-                Title = $"{_title} ({current} / {total})";
+                var percent = current * 100.0 / total;
+                PercentText.Text = $"{percent:0}%";
+
+                // ProgressBar.Maximum = total;
+                // ProgressBar.Value = current;
+                // Title = $"{_title} ({current} / {total})";
+                // ProgressText.Text = $"{current} / {total}";
             }, DispatcherPriority.Background);
     }
 }

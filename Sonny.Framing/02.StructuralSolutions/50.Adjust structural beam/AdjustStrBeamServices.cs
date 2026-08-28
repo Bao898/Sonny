@@ -29,7 +29,7 @@ public static class AdjustStrBeamServices
     private const double InsideWallTolMm = 1.0;
 
     // Case 3: chiều sâu profile dư thêm quá endpoint (mm).
-    private const double OpeningProfileExtension = 400.0;
+    private const double OpeningProfileExtension = 200.0;
 
     // CHANGED: Case 3 — đầu Line ngoài tường nhưng cách mặt ngoài <= 10 mm vẫn coi là giao.
     private const double SkewOutsideTouchTolMm = 10.0;
@@ -87,7 +87,7 @@ public static class AdjustStrBeamServices
             return;
 
         // CHANGED: đầu (beamId, endIndex) đã xử lý — tường / dầm–dầm không bị cột–mép đè.
-        var handledEnds = new HashSet<(int BeamId, int EndIndex)>();
+        var handledEnds = new HashSet<(long BeamId, int EndIndex)>();
 
         // ----- 1) Tường–dầm (chỉ đầu gặp tường; không chặn pha cột) -----
         if (walls != null && walls.Any() && wallGapMm >= 0)
@@ -128,7 +128,7 @@ public static class AdjustStrBeamServices
         IList<Wall> walls,
         double gapMm,
         bool useExteriorFace,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         double gapFt = gapMm / 304.8;
         double touchTolFt = TouchTolMm / 304.8;
@@ -179,12 +179,12 @@ public static class AdjustStrBeamServices
         double touchTolFt,
         double insideTolFt,
         bool useExteriorFace,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         if (handledEnds == null || beam == null)
             return;
 
-        int beamId = beam.Id.IntegerValue;
+        long beamId = GetIdValue(beam);
         double outsideTouchTolFt = SkewOutsideTouchTolMm / 304.8;
 
         bool meet0 = FindTargetWallFace(
@@ -238,7 +238,7 @@ public static class AdjustStrBeamServices
     private static List<BeamBeamColumnGroup> CollectBeamBeamColumnGroups(
         IList<FamilyInstance> beams,
         IList<FamilyInstance> columns,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         var groups = new List<BeamBeamColumnGroup>();
         if (beams == null || columns == null)
@@ -270,7 +270,7 @@ public static class AdjustStrBeamServices
                 if (endIndex < 0)
                     continue;
                 if (handledEnds != null &&
-                    handledEnds.Contains((beam.Id.IntegerValue, endIndex)))
+                    handledEnds.Contains((GetIdValue(beam), endIndex)))
                     continue;
 
                 if (!pairBeams.Contains(beam))
@@ -299,7 +299,7 @@ public static class AdjustStrBeamServices
         IList<FamilyInstance> beams,
         FamilyInstance column,
         double totalGapMm,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         if (!TryGetRectangularColumnPlan(
                 column, out XYZ centerM, out _, out _, out _, out _))
@@ -326,7 +326,7 @@ public static class AdjustStrBeamServices
             // CHANGED: đánh dấu đầu gần tâm — không để pha cột–mép đè sau.
             int endIndex = GetBeamEndIndex(beam, endNear);
             if (endIndex >= 0 && handledEnds != null)
-                handledEnds.Add((beam.Id.IntegerValue, endIndex));
+                handledEnds.Add((GetIdValue(beam), endIndex));
 
             XYZ beamDirXY = Flatten(outDir);
             if (beamDirXY == null)
@@ -451,7 +451,7 @@ public static class AdjustStrBeamServices
     private static List<ThreeBeamColumnGroup> CollectThreeBeamColumnGroups(
         IList<FamilyInstance> beams,
         IList<FamilyInstance> columns,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         var groups = new List<ThreeBeamColumnGroup>();
         if (beams == null || columns == null)
@@ -488,7 +488,7 @@ public static class AdjustStrBeamServices
                 if (endIndex < 0)
                     continue;
                 if (handledEnds != null &&
-                    handledEnds.Contains((beam.Id.IntegerValue, endIndex)))
+                    handledEnds.Contains((GetIdValue(beam), endIndex)))
                     continue;
 
                 XYZ dirXY = Flatten(outDir);
@@ -567,19 +567,19 @@ public static class AdjustStrBeamServices
         double halfX,
         double halfY,
         double nearCenterTolFt,
-        HashSet<(int BeamId, int EndIndex)> handledEnds,
+        HashSet<(long BeamId, int EndIndex)> handledEnds,
         out FamilyInstance third)
     {
         third = null;
-        int id0 = host0.Id.IntegerValue;
-        int id1 = host1.Id.IntegerValue;
+        long id0 = GetIdValue(host0);
+        long id1 = GetIdValue(host1);
         double bestDist = double.MaxValue;
 
         foreach (FamilyInstance beam in beams)
         {
             if (beam == null || !beam.IsValidObject)
                 continue;
-            int id = beam.Id.IntegerValue;
+            long id = GetIdValue(beam);
             if (id == id0 || id == id1)
                 continue;
 
@@ -686,7 +686,7 @@ public static class AdjustStrBeamServices
         ThreeBeamColumnGroup group,
         double beamBeamGapColumnMm,
         double thirdBeamGapMm,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         if (group.Column == null || group.CollinearBeams == null || group.CollinearBeams.Count != 2)
             return;
@@ -741,7 +741,7 @@ public static class AdjustStrBeamServices
             if (host == null || !host.IsValidObject)
                 continue;
             if (!TryPrepareHostLedgeOpening(
-                    host, host.Id.IntegerValue, thirdBeam, column, centerM,
+                    host, GetIdValue(host), thirdBeam, column, centerM,
                     out HostLedgeOpeningPrep prep))
                 continue;
             preps.Add(prep);
@@ -949,7 +949,7 @@ public static class AdjustStrBeamServices
     private static void MarkThirdBeamEndsHandled(
         FamilyInstance thirdBeam,
         XYZ columnCenter,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         if (handledEnds == null || thirdBeam == null || !thirdBeam.IsValidObject)
             return;
@@ -962,14 +962,14 @@ public static class AdjustStrBeamServices
         if (endIndex < 0)
             return;
 
-        handledEnds.Add((thirdBeam.Id.IntegerValue, endIndex));
+        handledEnds.Add((GetIdValue(thirdBeam), endIndex));
     }
 
     /// <summary>CHANGED: dữ liệu chuẩn bị Opening HCN trên 1 host đồng line.</summary>
     private struct HostLedgeOpeningPrep
     {
         public FamilyInstance Host;
-        public int HostBeamId;
+        public long HostBeamId;
         public double ComputedSFarFt;
         public XYZ FaceOrigin;
         public XYZ AwayDir;
@@ -986,14 +986,14 @@ public static class AdjustStrBeamServices
     /// </summary>
     private static bool TryPrepareHostLedgeOpening(
         FamilyInstance host,
-        int hostBeamId,
+        long hostBeamId,
         FamilyInstance thirdBeam,
         FamilyInstance column,
         XYZ columnCenter,
         out HostLedgeOpeningPrep prep)
     {
         prep = default;
-        if (host == null || !host.IsValidObject || host.Id.IntegerValue != hostBeamId)
+        if (host == null || !host.IsValidObject || GetIdValue(host) != hostBeamId)
             return false;
         if (host.Location is not LocationCurve hostLoc || hostLoc.Curve is not Line hostLine)
             return false;
@@ -1971,6 +1971,7 @@ public static class AdjustStrBeamServices
     // CHANGED: REGION Beam and Column (cột chữ nhật)
     // Footprint = hình chữ nhật b×h của cột nhìn xuống mặt bằng.
     // =====================================================================
+
     /// <summary>CHANGED: một mặt đứng của footprint cột chữ nhật trên plan.</summary>
     private struct ColumnFace
     {
@@ -1998,7 +1999,7 @@ public static class AdjustStrBeamServices
         IList<FamilyInstance> beams,
         IList<FamilyInstance> columns,
         double gapMm,
-        HashSet<(int BeamId, int EndIndex)> handledEnds)
+        HashSet<(long BeamId, int EndIndex)> handledEnds)
     {
         double gapFt = gapMm / 304.8;
         double touchTolFt = TouchTolMm / 304.8;
@@ -2015,7 +2016,7 @@ public static class AdjustStrBeamServices
             if (location.Curve is not Line line)
                 continue;
 
-            int beamId = beam.Id.IntegerValue;
+            long beamId = GetIdValue(beam);
             // CHANGED: skip từng đầu đã xử lý ở pha trước.
             bool skip0 = handledEnds != null && handledEnds.Contains((beamId, 0));
             bool skip1 = handledEnds != null && handledEnds.Contains((beamId, 1));
@@ -2357,5 +2358,17 @@ public static class AdjustStrBeamServices
     }
 
     #endregion
+
+    /// <summary>
+    /// CHANGED: đọc ElementId đa phiên bản — R21–R23: IntegerValue; R24+: Value (Int64).
+    /// </summary>
+    private static long GetIdValue(Element element)
+    {
+#if REVIT2021 || REVIT2022 || REVIT2023 || ALB_R21 || ALB_R22 || ALB_R23
+        return element.Id.IntegerValue;
+#else
+        return element.Id.Value;
+#endif
+    }
 }
 

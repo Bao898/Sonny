@@ -20,12 +20,18 @@ namespace SonnyBIM
 
         public List<Element> SelectedElements = new List<Element>();
         internal BasePoint ProjectBasePoint = null;
-
         [Obfuscation]
-        public bool IsCurrentSelection { get; set; }
-
+        public bool IsEntireModel { get; set; }
         [Obfuscation]
         public bool IsCurrentView { get; set; }
+        [Obfuscation]
+        public bool IsCurrentSelection { get; set; }
+        [Obfuscation]
+        public bool IsSurveyPoint { get; set; } = true;
+        [Obfuscation]
+        public bool IsProjectBasePoint { get; set; }
+        [Obfuscation]
+        public bool IsInternalOrigin { get; set; }
 
         [Obfuscation]
         public LanguageData SelectedLanguage
@@ -45,8 +51,21 @@ namespace SonnyBIM
         }
 
         [Obfuscation]
-        public bool IsProjectBasePoint { get; set; }
-
+        public string CoordinateBaseCap { get; set; }
+        [Obfuscation]
+        public string ScopePilesCap { get; set; }
+        [Obfuscation]
+        public string EntireModelCap { get; set; }
+        [Obfuscation]
+        public string CurrentViewCap { get; set; }
+        [Obfuscation]
+        public string CurrentSelectionCap { get; set; }
+        [Obfuscation]
+        public string SurveyPointCap { get; set; }
+        [Obfuscation]
+        public string ProjectBasePointCap { get; set; }
+        [Obfuscation]
+        public string InternalOriginCap { get; set; }
 
 
         #endregion public property
@@ -149,6 +168,32 @@ namespace SonnyBIM
             TitleCaption = BindingUtils.ChangeLanguage(_languageCode,
                 "Dựng Cọc từ AutoCAD",
                 "Model Pile from AutoCAD");
+
+            CoordinateBaseCap = BindingUtils.ChangeLanguage(_languageCode,
+                "Hệ tọa độ",
+                "Base Coordinate");
+            ScopePilesCap = BindingUtils.ChangeLanguage(_languageCode,
+                "Phạm vi tính toán",
+                "Scope Pile/Column");
+            EntireModelCap = BindingUtils.ChangeLanguage(_languageCode,
+                "Toàn Bộ Dự Án",
+                "Entire Project");
+            CurrentViewCap = BindingUtils.ChangeLanguage(_languageCode,
+                "View Hiện Tại",
+                "Current View");
+            CurrentSelectionCap = BindingUtils.ChangeLanguage(_languageCode,
+                "Các Đối Tượng Được Chọn",
+                "Current Selection");
+
+            SurveyPointCap = BindingUtils.ChangeLanguage(_languageCode,
+                "Survey Point",
+                "Survey Point");
+            ProjectBasePointCap = BindingUtils.ChangeLanguage(_languageCode,
+                "Project Base Point",
+                "Project Base Point");
+            InternalOriginCap = BindingUtils.ChangeLanguage(_languageCode,
+                "Internal Origin",
+                "Internal Origin");
 
             #endregion ChangeLanguage
 

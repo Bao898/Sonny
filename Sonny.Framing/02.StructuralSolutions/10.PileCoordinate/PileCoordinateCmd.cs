@@ -47,8 +47,21 @@ namespace SonnyBIM
                         "Pile Coordinates");
                     reporter.Show(title);
 
-                    new PileCoordinateServices(viewModel, reporter);
+                    try {
+                        // 2. Khởi tạo Service và truyền reporter vào
+                        var service = new PileCoordinateServices(viewModel, reporter);
 
+                        // 3. Thực hiện thuật toán
+                        service.Execute();
+                    }
+                    catch (Exception ex) {
+                        // Hiển thị lỗi nếu có vấn đề trong quá trình chạy
+                        TaskDialog.Show("Error", ex.Message);
+                    }
+                    finally {
+                        // 4. Luôn đảm bảo đóng cửa sổ Progress khi kết thúc (thành công hoặc thất bại)
+                        reporter.Close();
+                    }
                     txG.Assimilate();
                 }
                 return Result.Succeeded;
